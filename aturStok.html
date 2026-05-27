@@ -50,7 +50,7 @@
 
   <!-- NAVBAR -->
    <div
-      id="navbarSellerMode-container"
+      id="navbarLoginMode-container"
       class="fixed top-0 left-0 w-full z-50"
     ></div>
 
@@ -144,10 +144,10 @@
 </div>
 <script>
 lucide.createIcons();
-fetch('component/navbarSellerMode.html')
+fetch('component/navbarLoginMode.html')
   .then(res => res.text())
   .then(data => {
-    document.getElementById('navbarSellerMode-container').innerHTML = data;
+    document.getElementById('navbarLoginMode-container').innerHTML = data;
 
     lucide.createIcons(); 
   });
