@@ -54,8 +54,13 @@
   <!-- CONTENT -->
   <main class="flex-1 flex items-center justify-center">
   <div class="flex flex-col w-[686px] items-start gap-4 p-4">
-
     <div class="relative">
+
+    <a href="DashboardSellerMode.html"
+      class="absolute top-4 left-4 z-10 bg-white/90 hover:bg-white text-[#173809] p-3 rounded-full shadow-md transition">
+      <i data-lucide="arrow-left" class="w-6 h-6"></i>
+    </a>
+
       <img
         id="productImage"
         class="w-full aspect-[1.5] object-cover rounded-2xl"
@@ -130,9 +135,9 @@
 </div>
 </div>
 
-<button class="w-full primary text-white rounded-3xl p-6 flex items-center justify-center gap-4 text-2xl font-semibold hover:scale-[1.01] transition">
+<button id="saveBtn" class="w-full primary text-white rounded-3xl p-6 flex items-center justify-center gap-4 text-2xl font-semibold hover:scale-[1.01] transition">
   Simpan
-  </button>
+</button>
 </div>
 <script>
 lucide.createIcons();
@@ -155,7 +160,7 @@ fetch('component/navbarSellerMode.html')
 
     wortel: {
       name: "Wortel",
-      image: "https://images.unsplash.com/photo-1447175008436-170170753d52?q=80&w=1200&auto=format&fit=crop",
+      image: "https://www.siaranindonesia.com/data/uploads/2022/09/images-24.jpeg",
       desc: "Baik untuk kesehatan mata dan kaya vitamin A.",
       stock: 320,
       unit: "kg"
@@ -163,19 +168,31 @@ fetch('component/navbarSellerMode.html')
 
     tomat: {
       name: "Tomat",
-      image: "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?q=80&w=1200&auto=format&fit=crop",
+      image: "https://cdn.pixabay.com/photo/2022/09/05/09/50/tomatoes-7433786_1280.jpg",
       desc: "Segar dan kaya antioksidan alami.",
       stock: 210,
       unit: "kg"
+    },
+
+    cabai: {
+      name: "Cabai",
+      image: "https://unair.ac.id/wp-content/uploads/2021/10/Foto-oleh-The-Sport-Review.jpg",
+      desc: "Pedas segar untuk pelengkap masakan harian.",
+      stock: 150,
+      unit: "kg"
     }
   };
-  const selectedProduct = "wortel";
-// coba ganti:
-// "buncis"
-// "wortel"
-// "tomat"
 
-const product = products[selectedProduct];
+const params = new URLSearchParams(window.location.search);
+
+const selectedProduct =
+  params.get("product") || "buncis";
+
+const product =
+  products[selectedProduct] || products["buncis"];
+
+console.log(selectedProduct);
+console.log(product);
 
 document.getElementById("productImage").src = product.image;
 
@@ -197,7 +214,11 @@ const decreaseBtn =
   document.getElementById("decreaseBtn");
 
 function updateStock() {
+
   currentStock.innerText =
+    `${stock} ${product.unit}`;
+
+  document.getElementById("currentStockTop").innerText =
     `${stock} ${product.unit}`;
 }
 
@@ -213,6 +234,29 @@ decreaseBtn.addEventListener("click", () => {
     stock--;
     updateStock();
   }
+});
+  document.getElementById("saveBtn").addEventListener("click", () => {
+
+  let allStock = JSON.parse(localStorage.getItem("allStock")) || {};
+
+  allStock[selectedProduct] = stock;
+
+  localStorage.setItem("allStock", JSON.stringify(allStock));
+
+  alert("Stok berhasil disimpan!");
+  window.location.href = "DashboardSellerMode.html";
+});
+
+document.getElementById("saveBtn").addEventListener("click", () => {
+  const updatedData = {
+    product: selectedProduct,
+    stock: stock
+  };
+
+  localStorage.setItem("updatedStock", JSON.stringify(updatedData));
+
+  alert("Stok berhasil disimpan!");
+  window.location.href = "DashboardSellerMode.html";
 });
   </script>
 </body>

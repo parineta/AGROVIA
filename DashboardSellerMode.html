@@ -204,11 +204,11 @@
 
               <div class="flex items-center justify-between">
 
-                <span class="text-sm text-gray-600">
+                <span id="buncis-stock" class="text-sm text-gray-600">
                   Stok: 40 kg
                 </span>
 
-                <a href="aturStok.html" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
+                <a href="aturStok.html?product=buncis" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
                   <i data-lucide="pencil" class="w-4 h-4"></i>
                   Perbarui
                 </a>
@@ -244,11 +244,11 @@
 
               <div class="flex items-center justify-between">
 
-                <span class="text-sm text-gray-600">
+                <span id="wortel-stock" class="text-sm text-gray-600">
                   Stok: 28 kg
                 </span>
 
-                <a href="aturStok.html" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
+                <a href="aturStok.html?product=wortel" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
                   <i data-lucide="pencil" class="w-4 h-4"></i>
                   Perbarui
                 </a>
@@ -284,11 +284,11 @@
 
               <div class="flex items-center justify-between">
 
-                <span class="text-sm text-gray-600">
-                  Stok: 60 kg
-                </span>
+              <span id="tomat-stock" class="text-sm text-gray-600">
+                Stok: 60 kg
+              </span>
 
-                <a href="aturStok.html" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
+                <a href="aturStok.html?product=tomat" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
                   <i data-lucide="pencil" class="w-4 h-4"></i>
                   Perbarui
                 </a>
@@ -323,11 +323,11 @@
 
               <div class="flex items-center justify-between">
 
-                <span class="text-sm text-gray-600">
-                  Stok: 15 kg
-                </span>
+              <span id="cabai-stock" class="text-sm text-gray-600">
+                Stok: 15 kg
+              </span>
 
-                <a href="aturStok.html" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
+                <a href="aturStok.html?product=cabai" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
                   <i data-lucide="pencil" class="w-4 h-4"></i>
                   Perbarui
                 </a>
@@ -541,35 +541,63 @@
 
   if (!searchInput) return;
 
-  function doSearch() {
+  searchInput.addEventListener("input", () => {
     const value = searchInput.value.toLowerCase();
 
     productCards.forEach(card => {
       const name = card.getAttribute("data-name")?.toLowerCase() || "";
       card.style.display = name.includes(value) ? "" : "none";
     });
-  }
-
-  searchInput.addEventListener("input", doSearch);
+  });
 }
-  fetch('component/navbarSellerMode.html')
+
+fetch('component/navbarSellerMode.html')
   .then(res => res.text())
   .then(data => {
     document.getElementById('navbarSellerMode-container').innerHTML = data;
-
     lucide.createIcons();
-
-    initSearch(); // 
+    initSearch();
   });
 
-    fetch('component/footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer-container').innerHTML = data;
-        lucide.createIcons();
-      });
-
+fetch('component/footer.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('footer-container').innerHTML = data;
     lucide.createIcons();
+  });
+
+/* =========================
+   STOCK UPDATE LOGIC
+========================= */
+
+const allStock = JSON.parse(localStorage.getItem("allStock")) || {};
+
+console.log("DATA STOCK:", allStock);
+
+function updateStockUI() {
+  if (allStock.buncis !== undefined) {
+    document.getElementById("buncis-stock").innerText =
+      `Stok: ${allStock.buncis} kg`;
+  }
+
+  if (allStock.wortel !== undefined) {
+    document.getElementById("wortel-stock").innerText =
+      `Stok: ${allStock.wortel} kg`;
+  }
+
+  if (allStock.tomat !== undefined) {
+    document.getElementById("tomat-stock").innerText =
+      `Stok: ${allStock.tomat} kg`;
+  }
+
+  if (allStock.cabai !== undefined) {
+    document.getElementById("cabai-stock").innerText =
+      `Stok: ${allStock.cabai} kg`;
+  }
+}
+
+updateStockUI();
+lucide.createIcons();
   </script>
 
 </body>
