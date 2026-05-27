@@ -47,28 +47,56 @@
 <body class="bg-white">
 
   <!-- HEADER -->
-  <div id="navbarSellerMode-container"></div>
-
+  <div
+      id="navbarSellerMode-container"
+      class="fixed top-0 left-0 w-full z-50"
+    ></div>
+  <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-8 space-y-8 pt-12"></main>
   <!-- TITLE -->
-  <div class="px-32 mt-10">
-    <h1 class="text-2xl font-semibold text-[#407616]">Tambah Barang Baru</h1>
-    <p class="text-gray-600">Kelola inventaris hasil tani Anda dengan detail yang akurat.</p>
+  <div class="w-full flex justify-center mt-10">
+
+    <div class="w-[1130px]">
+      <h1 class="text-2xl font-semibold text-[#407616]">
+        Tambah Barang Baru
+      </h1>
+
+      <p class="text-gray-600">
+        Kelola inventaris hasil tani Anda dengan detail yang akurat.
+      </p>
+    </div>
+
   </div>
 
   <!-- MAIN -->
-  <div class="flex gap-10 px-32 mt-8">
+  <div class="flex justify-center items-start gap-10 px-32 mt-8">
 
     <!-- UPLOAD -->
-    <div class="w-1/2">
-      <p class="text-sm text-[#43493e] mb-2">FOTO PRODUK UTAMA</p>
+    <div
+      class="w-[420px] h-[420px] border-2 border-dashed rounded-2xl bg-[#f6f4ec]
+      p-10 flex flex-col items-center justify-center text-center relative overflow-hidden shrink-0"
+    >
 
-      <div class="border-2 border-dashed rounded-2xl bg-[#f6f4ec] p-10 flex flex-col items-center justify-center">
-        <img src="img/image.svg" class="w-10 mb-3" />
-        <p class="font-semibold">Unggah Foto</p>
-        <p class="text-center text-sm text-gray-600 mt-2">
-          Gunakan foto pencahayaan alami (JPG/PNG max 5MB)
-        </p>
+      <!-- PREVIEW IMAGE -->
+      <div
+        id="previewContainer"
+        class="flex flex-col items-center justify-center text-center gap-3 w-full h-full"
+      >
+        <i data-lucide="image-plus" class="w-12 h-12 text-[#7b8b6f]"></i>
       </div>
+
+      <p class="font-semibold">Unggah Foto</p>
+
+      <p class="text-center text-sm text-gray-600 mt-2">
+        Gunakan foto pencahayaan alami (JPG/PNG max 5MB)
+      </p>
+
+      <!-- INPUT FILE -->
+      <input
+        type="file"
+        id="uploadFoto"
+        accept="image/png, image/jpeg"
+        class="absolute inset-0 opacity-0 cursor-pointer"
+      />
     </div>
 
     <!-- FORM -->
@@ -76,39 +104,60 @@
 
       <div>
         <label class="text-sm text-[#43493e]">Nama Produk</label>
-        <input class="w-full p-3 border rounded-xl bg-[#f6f4ec]" placeholder="misal: Jagung Manis Super" />
+        <input
+          id="namaProduk"
+          class="w-full p-3 border rounded-xl bg-[#f6f4ec]"
+          placeholder="misal: Jagung Manis Super"
+        />
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
+      <!-- HARGA PER GRAM -->
+      <div>
+        <label class="text-sm text-[#43493e]">Harga per Kilogram</label>
 
-        <div>
-          <label class="text-sm text-[#43493e]">Kategori</label>
-          <select class="w-full p-3 border rounded-xl bg-[#f6f4ec]">
-            <option>Pilih Kategori</option>
-          </select>
+        <div class="relative mt-1">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+            Rp
+          </span>
+
+          <input
+            id="hargaProduk"
+            class="w-full p-3 pl-12 border rounded-xl bg-[#f6f4ec]"
+            placeholder="0 / kg"
+          />
         </div>
-
-        <div>
-          <label class="text-sm text-[#43493e]">Harga Satuan</label>
-          <input class="w-full p-3 border rounded-xl bg-[#f6f4ec]" placeholder="Rp 0" />
-        </div>
-
       </div>
 
       <div>
         <label class="text-sm text-[#43493e]">Stok Awal</label>
-        <input class="w-full p-3 border rounded-xl bg-[#f6f4ec]" placeholder="0" />
+        <input
+          id="stokProduk"
+          class="w-full p-3 border rounded-xl bg-[#f6f4ec]"
+          placeholder="0 kg"
+        />
       </div>
 
       <div>
         <label class="text-sm text-[#43493e]">Deskripsi Produk</label>
-        <textarea class="w-full p-3 border rounded-xl bg-[#f6f4ec] h-28"
-          placeholder="Ceritakan keunggulan produk..."></textarea>
+        <textarea
+          id="deskripsiProduk"
+          class="w-full p-3 border rounded-xl bg-[#f6f4ec] h-28"
+          placeholder="Ceritakan keunggulan produk..."
+        ></textarea>
       </div>
 
       <div class="flex justify-end gap-3">
-        <button class="px-6 py-2 border rounded-full">Batal</button>
-        <button class="px-8 py-2 bg-[#254e06] text-white rounded-full">
+        <button
+          id="btnBatal"
+          class="px-6 py-2 border rounded-full"
+        >
+          Batal
+        </button>
+
+        <button
+          id="btnTambah"
+          class="px-8 py-2 bg-[#254e06] text-white rounded-full"
+        >
           Tambah
         </button>
       </div>
@@ -117,27 +166,20 @@
   </div>
 
   <!-- TIP -->
-  <div class="mx-32 mt-10 p-4 bg-yellow-100 border rounded-xl">
-    <p class="font-bold">Tips Penjualan:</p>
-    <p class="text-sm">
-      Produk dengan deskripsi lengkap dan foto cerah lebih cepat terjual.
-    </p>
+  <div class="w-full flex justify-center mt-10 mb-16">
+
+    <div class="w-[1130px] p-4 bg-yellow-100 border rounded-xl">
+      <p class="font-bold">Tips Penjualan:</p>
+
+      <p class="text-sm">
+        Produk dengan deskripsi lengkap dan foto cerah lebih cepat terjual.
+      </p>
+    </div>
+
   </div>
 
   <!-- FOOTER -->
-  <footer class="mt-10 bg-[#f6f4ec] p-8 text-sm flex justify-between">
-    <div>
-      <b>Agrovia</b>
-      <p>© 2024 Agro Sustainable Agriculture</p>
-    </div>
-
-    <div class="flex gap-4">
-      <span>Support Center</span>
-      <span>Privacy Policy</span>
-      <span>Terms</span>
-      <span>Report</span>
-    </div>
-  </footer>
+  <div id="footer-container"></div>
 
 <script>
     lucide.createIcons();
@@ -148,6 +190,81 @@
 
         lucide.createIcons(); 
     });
+    fetch('component/footer.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('footer-container').innerHTML = data;
+      lucide.createIcons();
+    });
+
+    const uploadFoto = document.getElementById("uploadFoto");
+    const previewContainer = document.getElementById("previewContainer");
+
+    uploadFoto.addEventListener("change", function () {
+      const file = this.files[0];
+
+      if (file) {
+        // validasi max 5MB
+        if (file.size > 5 * 1024 * 1024) {
+          alert("Ukuran file maksimal 5MB");
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          previewContainer.innerHTML = `
+            <img
+              src="${e.target.result}"
+              class="w-full h-full object-cover rounded-xl"
+            />
+          `;
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
+
+    const btnTambah = document.getElementById("btnTambah");
+    const btnBatal = document.getElementById("btnBatal");
+
+    btnTambah.addEventListener("click", () => {
+
+      const nama = document.getElementById("namaProduk").value.trim();
+      const harga = document.getElementById("hargaProduk").value.trim();
+      const stok = document.getElementById("stokProduk").value.trim();
+      const deskripsi = document.getElementById("deskripsiProduk").value.trim();
+
+      // validasi wajib isi
+      if (!nama || !harga || !stok || !deskripsi || !previewContainer.querySelector("img")) {
+        alert("Semua data wajib diisi!");
+        return;
+      }
+
+      // ambil data lama
+      let produkList = JSON.parse(localStorage.getItem("produkPertanian")) || [];
+
+      // simpan produk baru
+      produkList.push({
+        nama,
+        harga,
+        stok,
+        deskripsi,
+        gambar: previewContainer.querySelector("img").src
+      });
+
+      // save localstorage
+      localStorage.setItem("produkPertanian", JSON.stringify(produkList));
+
+      // pindah halaman
+      window.location.href = "DashboardSellerMode.html";
+    });
+
+    btnBatal.addEventListener("click", () => {
+      window.location.href = "DashboardSellerMode.html";
+    });
+
+  lucide.createIcons();
 </script>
 </body>
 </html>

@@ -50,10 +50,13 @@
   <div class="min-h-screen flex flex-col">
 
     <!-- NAVBAR -->
-    <div id="navbarSellerMode-container"></div>
+    <div
+      id="navbarSellerMode-container"
+      class="fixed top-0 left-0 w-full z-50"
+    ></div>
 
     <!-- CONTENT -->
-    <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-8 space-y-8">
+    <main class="flex-1 max-w-7xl mx-auto w-full px-6 pt-32 pb-8 space-y-8">
 
       <!-- HEADER -->
       <section>
@@ -153,8 +156,10 @@
   </div>
 
   <!-- BUTTON TAMBAH -->
-  <button class="w-full primary text-white rounded-3xl p-6 flex items-center justify-center gap-3 text-2xl font-semibold hover:scale-[1.01] transition">
-
+  <button
+    onclick="window.location.href='tambahBarang.html'"
+    class="w-full primary text-white rounded-3xl p-6 flex items-center justify-center gap-3 text-2xl font-semibold hover:scale-[1.01] transition"
+  >
     <i data-lucide="plus" class="w-7 h-7"></i>
 
     Tambah Barang
@@ -178,7 +183,10 @@
         </div>
 
         <!-- GRID -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          id="produkContainer"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
 
           <!-- CARD -->
           <div class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition"
@@ -208,10 +216,23 @@
                   Stok: 40 kg
                 </span>
 
-                <a href="aturStok.html?product=buncis" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
-                  <i data-lucide="pencil" class="w-4 h-4"></i>
-                  Perbarui
-                </a>
+                <div class="flex items-center gap-2">
+
+                  <button
+                    onclick="hapusCard(this)"
+                    class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+                  >
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+
+                  <a
+                    href="aturStok.html?product=buncis"
+                    class="primary text-white w-10 h-10 rounded-full flex items-center justify-center"
+                  >
+                    <i data-lucide="pencil" class="w-4 h-4"></i>
+                  </a>
+
+                </div>
 
               </div>
 
@@ -241,17 +262,29 @@
                 </p>
 
               </div>
-
               <div class="flex items-center justify-between">
 
-                <span id="wortel-stock" class="text-sm text-gray-600">
-                  Stok: 28 kg
+                <span id="buncis-stock" class="text-sm text-gray-600">
+                  Stok: 40 kg
                 </span>
 
-                <a href="aturStok.html?product=wortel" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
-                  <i data-lucide="pencil" class="w-4 h-4"></i>
-                  Perbarui
-                </a>
+                <div class="flex items-center gap-2">
+
+                  <button
+                    onclick="hapusCard(this)"
+                    class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+                  >
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+
+                  <a
+                    href="aturStok.html?product=wortel"
+                    class="primary text-white w-10 h-10 rounded-full flex items-center justify-center"
+                  >
+                    <i data-lucide="pencil" class="w-4 h-4"></i>
+                  </a>
+
+                </div>
 
               </div>
 
@@ -284,14 +317,27 @@
 
               <div class="flex items-center justify-between">
 
-              <span id="tomat-stock" class="text-sm text-gray-600">
-                Stok: 60 kg
-              </span>
+                <span id="buncis-stock" class="text-sm text-gray-600">
+                  Stok: 50 kg
+                </span>
 
-                <a href="aturStok.html?product=tomat" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
-                  <i data-lucide="pencil" class="w-4 h-4"></i>
-                  Perbarui
-                </a>
+                <div class="flex items-center gap-2">
+
+                  <button
+                    onclick="hapusCard(this)"
+                    class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+                  >
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+
+                  <a
+                    href="aturStok.html?product=wortel"
+                    class="primary text-white w-10 h-10 rounded-full flex items-center justify-center"
+                  >
+                    <i data-lucide="pencil" class="w-4 h-4"></i>
+                  </a>
+
+                </div>
 
               </div>
 
@@ -320,20 +366,31 @@
                 </p>
 
               </div>
-
               <div class="flex items-center justify-between">
 
-              <span id="cabai-stock" class="text-sm text-gray-600">
-                Stok: 15 kg
-              </span>
+                <span id="buncis-stock" class="text-sm text-gray-600">
+                  Stok: 30 kg
+                </span>
 
-                <a href="aturStok.html?product=cabai" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
-                  <i data-lucide="pencil" class="w-4 h-4"></i>
-                  Perbarui
-                </a>
+                <div class="flex items-center gap-2">
+
+                  <button
+                    onclick="hapusCard(this)"
+                    class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+                  >
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+
+                  <a
+                    href="aturStok.html?product=cabai"
+                    class="primary text-white w-10 h-10 rounded-full flex items-center justify-center"
+                  >
+                    <i data-lucide="pencil" class="w-4 h-4"></i>
+                  </a>
+
+                </div>
 
               </div>
-
             </div>
 
           </div>
@@ -566,9 +623,75 @@ fetch('component/footer.html')
     lucide.createIcons();
   });
 
-/* =========================
-   STOCK UPDATE LOGIC
-========================= */
+const produkContainer = document.getElementById("produkContainer");
+
+    const produkList =
+      JSON.parse(localStorage.getItem("produkPertanian")) || [];
+
+produkList.forEach((produk, index) => {
+
+  produkContainer.innerHTML += `
+    <div
+      class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition"
+      data-name="${produk.nama.toLowerCase()}"
+    >
+
+      <img
+        src="${produk.gambar}"
+        class="w-full h-52 object-cover rounded-2xl"
+      />
+
+      <div class="mt-5 space-y-4">
+
+        <div>
+
+          <h3 class="text-2xl font-bold">
+            ${produk.nama}
+          </h3>
+
+          <p class="text-lg font-semibold text-[#154212]">
+            Rp ${produk.harga}/kg
+          </p>
+
+        </div>
+
+        <div class="flex items-center justify-between">
+
+          <span class="text-sm text-gray-600">
+            Stok: ${produk.stok} kg
+          </span>
+
+          <div class="flex gap-2">
+
+          <button
+            onclick="hapusProduk(${index})"
+            class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+          >
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+          </button>
+
+            <a
+              href="#"
+              class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2"
+            >
+              <i data-lucide="pencil" class="w-4 h-4"></i>
+              Perbarui
+            </a>
+
+          </div>
+
+        </div>
+
+        <p class="text-sm text-gray-600">
+          ${produk.deskripsi}
+        </p>
+
+      </div>
+
+    </div>
+  `;
+});
+lucide.createIcons();
 
 const allStock = JSON.parse(localStorage.getItem("allStock")) || {};
 
@@ -596,6 +719,20 @@ function updateStockUI() {
   }
 }
 
+function hapusProduk(index) {
+
+  const produkList =
+    JSON.parse(localStorage.getItem("produkPertanian")) || [];
+
+  produkList.splice(index, 1);
+
+  localStorage.setItem(
+    "produkPertanian",
+    JSON.stringify(produkList)
+  );
+
+  location.reload();
+}
 updateStockUI();
 lucide.createIcons();
   </script>
