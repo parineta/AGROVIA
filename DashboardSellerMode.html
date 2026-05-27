@@ -6,7 +6,6 @@
 
   <title>DashboardSellerMode</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Lucide -->
@@ -51,7 +50,7 @@
   <div class="min-h-screen flex flex-col">
 
     <!-- NAVBAR -->
-    <div id="navbar"></div>
+    <div id="navbarSellerMode-container"></div>
 
     <!-- CONTENT -->
     <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-8 space-y-8">
@@ -69,7 +68,6 @@
 
       </section>
 
-      <!-- STATS -->
       <!-- STATS -->
 <section class="space-y-6">
 
@@ -183,10 +181,10 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
           <!-- CARD -->
-          <div class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition">
-
+          <div class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition"
+          data-name="buncis">
             <img
-              src="https://images.unsplash.com/photo-1566383444833-43e1b5b4c7d1?q=80&w=1200&auto=format&fit=crop"
+              src="https://www.bibitbenih.com/wp-content/uploads/2023/05/budidaya-buncis-1024x976.jpg"
               class="w-full h-52 object-cover rounded-2xl"
             />
 
@@ -210,13 +208,10 @@
                   Stok: 40 kg
                 </span>
 
-                <button class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
-
+                <a href="aturStok.html" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
                   <i data-lucide="pencil" class="w-4 h-4"></i>
-
                   Perbarui
-
-                </button>
+                </a>
 
               </div>
 
@@ -225,10 +220,11 @@
           </div>
 
           <!-- CARD -->
-          <div class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition">
+          <div class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition"
+          data-name="wortel">
 
             <img
-              src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=1200&auto=format&fit=crop"
+              src="https://www.siaranindonesia.com/data/uploads/2022/09/images-24.jpeg"
               class="w-full h-52 object-cover rounded-2xl"
             />
 
@@ -252,13 +248,10 @@
                   Stok: 28 kg
                 </span>
 
-                <button class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
-
+                <a href="aturStok.html" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
                   <i data-lucide="pencil" class="w-4 h-4"></i>
-
                   Perbarui
-
-                </button>
+                </a>
 
               </div>
 
@@ -267,10 +260,11 @@
           </div>
 
           <!-- CARD -->
-          <div class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition">
+          <div class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition"
+          data-name="tomat">
 
             <img
-              src="https://images.unsplash.com/photo-1576181256399-834e3b3a49bf?q=80&w=1200&auto=format&fit=crop"
+              src="https://cdn.pixabay.com/photo/2022/09/05/09/50/tomatoes-7433786_1280.jpg"
               class="w-full h-52 object-cover rounded-2xl"
             />
 
@@ -294,13 +288,10 @@
                   Stok: 60 kg
                 </span>
 
-                <button class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
-
+                <a href="aturStok.html" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
                   <i data-lucide="pencil" class="w-4 h-4"></i>
-
                   Perbarui
-
-                </button>
+                </a>
 
               </div>
 
@@ -309,10 +300,10 @@
           </div>
 
           <!-- CARD -->
-          <div class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition">
-
+          <div class="bg-white rounded-3xl p-5 soft-border card-shadow hover:-translate-y-1 transition"
+          data-name="cabai">
             <img
-              src="https://images.unsplash.com/photo-1615485925873-8c4b8f59c0c9?q=80&w=1200&auto=format&fit=crop"
+              src="https://unair.ac.id/wp-content/uploads/2021/10/Foto-oleh-The-Sport-Review.jpg"
               class="w-full h-52 object-cover rounded-2xl"
             />
 
@@ -336,13 +327,10 @@
                   Stok: 15 kg
                 </span>
 
-                <button class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
-
+                <a href="aturStok.html" class="primary text-white px-5 py-2 rounded-full font-medium flex items-center gap-2">
                   <i data-lucide="pencil" class="w-4 h-4"></i>
-
                   Perbarui
-
-                </button>
+                </a>
 
               </div>
 
@@ -541,45 +529,46 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-[#f6f4ec] border-t border-[#e7e7df] mt-10">
-
-      <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col lg:flex-row items-center justify-between gap-5">
-
-        <div>
-
-          <h2 class="font-bold text-lg">
-            Agrovia
-          </h2>
-
-          <p class="text-gray-600 text-sm mt-1">
-            © 2026 Agro Sustainable Agriculture. All rights reserved.
-          </p>
-
-        </div>
-
-        <div class="flex flex-wrap items-center gap-5 text-sm text-gray-600">
-
-          <a href="#">Support Center</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Sustainability Report</a>
-
-        </div>
-
-      </div>
-
-    </footer>
+    <div id="footer-container"></div>
 
   </div>
 
   <!-- INIT ICON -->
   <script>
-    fetch('components/navbar.html')
+  function initSearch() {
+  const searchInput = document.getElementById("searchInput");
+  const productCards = document.querySelectorAll("[data-name]");
+
+  if (!searchInput) return;
+
+  function doSearch() {
+    const value = searchInput.value.toLowerCase();
+
+    productCards.forEach(card => {
+      const name = card.getAttribute("data-name")?.toLowerCase() || "";
+      card.style.display = name.includes(value) ? "" : "none";
+    });
+  }
+
+  searchInput.addEventListener("input", doSearch);
+}
+  fetch('component/navbarSellerMode.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('navbarSellerMode-container').innerHTML = data;
+
+    lucide.createIcons();
+
+    initSearch(); // 
+  });
+
+    fetch('component/footer.html')
       .then(response => response.text())
       .then(data => {
-        document.getElementById('navbar').innerHTML = data;
+        document.getElementById('footer-container').innerHTML = data;
         lucide.createIcons();
       });
+
     lucide.createIcons();
   </script>
 

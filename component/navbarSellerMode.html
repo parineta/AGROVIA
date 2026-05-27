@@ -1,0 +1,96 @@
+<nav class="w-full bg-[#E3C800] border-b border-[#d4bc00] sticky top-0 z-50">
+
+  <div class="max-w-[1440px] mx-auto px-8 py-5 flex items-center justify-between gap-8">
+
+    <!-- LOGO -->
+    <div class="flex items-center gap-3 shrink-0">
+
+      <!-- ICON -->
+      <div class="w-[56px] h-[56px] rounded-2xl flex items-center justify-center">
+
+        <img 
+          src="../logo.png"
+          class="w-full h-full object-contain"
+        />
+
+      </div>
+
+      <!-- TEXT -->
+      <img
+        src="../tekslogo.png"
+        class="h-10 object-contain"
+      />
+
+    </div>
+
+    <!-- SEARCH -->
+    <div class="flex-1 flex justify-center">
+
+      <div class="w-full max-w-[450px] h-[48px] bg-[#E4E1DB] rounded-full border border-[#8D8D8D] flex items-center pl-5 pr-1">
+
+        <!-- INPUT -->
+        <input
+        id="searchInput"
+        type="text"
+        placeholder="Cari produk..."
+        class="flex-1 bg-transparent outline-none text-sm px-3"
+        />
+
+        <!-- BUTTON -->
+        <button class="bg-[#2E5A09] hover:bg-[#244807] transition-all text-white text-sm font-medium px-8 h-[40px] rounded-full">
+          Search
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- ACTION -->
+    <div class="flex items-center gap-5 shrink-0">
+
+      <!-- NOTIFICATION -->
+      <button class="w-[44px] h-[44px] rounded-full bg-[#2E5A09] flex items-center justify-center hover:scale-105 transition">
+
+        <i data-lucide="bell" class="w-5 h-5 text-white"></i>
+
+      </button>
+
+      <img 
+          src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
+          class="w-[44px] h-[44px] rounded-full object-cover"
+        />
+      <div class="text-left">
+          <p class="font-bold text-secondary">Josh Witson</p>
+          <p class="text-xs text-muted">Penjual</p>
+        </div>
+
+      
+
+    </div>
+
+  </div>
+
+</nav>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+  lucide.createIcons();
+    function initSearch() {
+    const searchInput = document.getElementById("searchInput");
+    const productCards = document.querySelectorAll("[data-name]");
+
+    if (!searchInput) return;
+
+    function doSearch() {
+        const value = searchInput.value.toLowerCase();
+
+        productCards.forEach(card => {
+        const name = card.getAttribute("data-name")?.toLowerCase() || "";
+        card.style.display = name.includes(value) ? "" : "none";
+        });
+    }
+
+    searchInput.addEventListener("input", doSearch);
+    }
+</script>
