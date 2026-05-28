@@ -547,8 +547,8 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <div class="nav-logo" onclick="location.href='index.html'">
-        <img src="logo.png" alt="" class="nav-logo-icon-img" />
-        <img src="tekslogo.png" alt="Agrovia" class="nav-logo-text-img" />
+        <img src="img/logo.png" alt="" class="nav-logo-icon-img" />
+        <img src="img/tekslogo.png" alt="Agrovia" class="nav-logo-text-img" />
       </div>
       <div class="nav-search">
         <div class="nav-search-box">
@@ -556,12 +556,7 @@
           <button class="nav-search-btn">Search</button>
         </div>
       </div>
-      <div class="nav-actions">
-        <button class="nav-icon-btn"><i data-lucide="package-2"></i></button>
-        <button class="nav-icon-btn"><i data-lucide="shopping-cart"></i></button>
-        <button class="nav-masuk">Masuk</button>
-        <button class="nav-daftar">Daftar</button>
-      </div>
+      <div class="nav-actions" id="navbarAction"></div>
     </div>
   </nav>
 
@@ -636,15 +631,101 @@
   </div>
 
   <script>
+      const navbarAction = document.getElementById("navbarAction");
+
+  const isLogin = localStorage.getItem("isLogin");
+
+  if(isLogin === "true"){
+
+    const username = localStorage.getItem("username") || "User";
+    const role = localStorage.getItem("role") || "Pembeli";
+
+    navbarAction.innerHTML = `
+    
+      <!-- BOX -->
+      <button 
+        class="nav-icon-btn"
+        onclick="window.location.href='DaftarPesanan.html'"
+      >
+        <i data-lucide="package-2"></i>
+      </button>
+
+      <!-- CART -->
+      <button 
+        class="nav-icon-btn"
+        onclick="window.location.href='Cart.html'"
+      >
+        <i data-lucide="shopping-cart"></i>
+      </button>
+
+      <!-- PROFILE -->
+      <div class="profile-section">
+
+        <img 
+          src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
+          class="profile-img"
+        >
+
+        <div class="profile-info">
+          <p class="profile-name">${username}</p>
+          <p class="profile-role">${role}</p>
+        </div>
+
+      </div>
+
+      <!-- LOGOUT -->
+      <button class="nav-masuk" onclick="logout()">
+        Logout
+      </button>
+    `;
+
+  } else {
+
+  navbarAction.innerHTML = `
+  
+    <!-- CART -->
+    <button 
+      class="nav-icon-btn"
+      onclick="window.location.href='Cart.html'"
+    >
+      <i data-lucide="shopping-cart"></i>
+    </button>
+
+    <!-- LOGIN -->
+    <button 
+      class="nav-masuk"
+      onclick="window.location.href='login.html'"
+    >
+      Masuk
+    </button>
+
+    <!-- REGISTER -->
+    <button 
+      class="nav-daftar"
+      onclick="window.location.href='register.html'"
+    >
+      Daftar
+    </button>
+  `;
+}
+
+  function logout(){
+
+    localStorage.removeItem("isLogin");
+    localStorage.removeItem("username");
+    localStorage.removeItem("role");
+
+    window.location.reload();
+  }
     const ONGKIR = 12000;
 
     const products = [
-      { id: "buncis", name: "Buncis", price: 10000, unit: "gram", image: "buncis.png" },
-      { id: "cabai-merah", name: "Cabai Merah", price: 25000, unit: "kg", image: "cb mrh.png" },
-      { id: "bawang-merah", name: "Bawang Merah", price: 18000, unit: "kg", image: "bwg mrh.png" },
-      { id: "wortel", name: "Wortel", price: 12000, unit: "kg", image: "wortel.png" },
-      { id: "bawang-putih", name: "Bawang Putih", price: 28000, unit: "kg", image: "bwg pth.png" },
-      { id: "tomat", name: "Tomat", price: 15000, unit: "kg", image: "tomat.png" }
+      { id: "buncis", name: "Buncis", price: 10000, unit: "gram", image: "img/buncis.png" },
+      { id: "cabai-merah", name: "Cabai Merah", price: 25000, unit: "kg", image: "img/cb mrh.png" },
+      { id: "bawang-merah", name: "Bawang Merah", price: 18000, unit: "kg", image: "img/bwg mrh.png" },
+      { id: "wortel", name: "Wortel", price: 12000, unit: "kg", image: "img/wortel.png" },
+      { id: "bawang-putih", name: "Bawang Putih", price: 28000, unit: "kg", image: "img/bwg pth.png" },
+      { id: "tomat", name: "Tomat", price: 15000, unit: "kg", image: "img/tomat.png" }
     ];
 
     let cart = JSON.parse(localStorage.getItem('agrovia_cart') || '[]');
