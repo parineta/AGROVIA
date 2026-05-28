@@ -126,6 +126,99 @@
       flex-shrink: 0;
     }
 
+    .action-section{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-btn{
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: none;
+      background: #254E06;
+      color: #FFFDF7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .icon-btn:hover{
+      transform: scale(1.05);
+    }
+
+    .icon-btn i{
+      width: 18px;
+      height: 18px;
+    }
+
+    .login-btn{
+      height: 40px;
+      padding: 0 22px;
+      border-radius: 10px;
+      border: 1px solid #60A030;
+      background: #F8FFF3;
+      color: #60A030;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .login-btn:hover{
+      background: #dfe7ca;
+    }
+
+    .register-btn{
+      height: 40px;
+      padding: 0 22px;
+      border-radius: 10px;
+      background: #254E06;
+      color: #FEFFED;
+      border: none;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .register-btn:hover{
+      background: #1d3d05;
+    }
+
+    .profile-section{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #FFFDF7;
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    .profile-img{
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-info{
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .profile-name{
+      font-size: 13px;
+      font-weight: 700;
+      color: #232323;
+    }
+
+    .profile-role{
+      font-size: 11px;
+      color: #666;
+    }
     .nav-icon-btn {
       width: 40px;
       height: 40px;
@@ -506,8 +599,8 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <div class="nav-logo" onclick="location.href='index.html'">
-        <img src="logo.png" alt="" class="nav-logo-icon-img" />
-        <img src="tekslogo.png" alt="" class="nav-logo-text-img" />
+        <img src="img/logo.png" alt="" class="nav-logo-icon-img" />
+        <img src="img/tekslogo.png" alt="" class="nav-logo-text-img" />
       </div>
       <div class="nav-search">
         <div class="nav-search-box">
@@ -515,12 +608,7 @@
           <button class="nav-search-btn">Search</button>
         </div>
       </div>
-      <div class="nav-actions">
-        <button class="nav-icon-btn" title="Pesanan"><i data-lucide="package-2"></i></button>
-        <button class="nav-icon-btn" title="Keranjang" onclick="location.href='cart.html'"><i data-lucide="shopping-cart"></i></button>
-        <button class="nav-masuk">Masuk</button>
-        <button class="nav-daftar">Daftar</button>
-      </div>
+      <div class="action-section" id="navbarAction"></div>
     </div>
   </nav>
 
@@ -560,6 +648,79 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    const navbarAction = document.getElementById("navbarAction");
+    const isLogin = localStorage.getItem("isLogin");
+
+    if(isLogin === "true"){
+
+      const username = localStorage.getItem("username") || "User";
+      const role = localStorage.getItem("role") || "Pembeli";
+
+      navbarAction.innerHTML = `
+      
+        <!-- BOX -->
+        <button class="icon-btn" onclick="window.location.href='DaftarPesanan.html'">
+          <i data-lucide="package-2"></i>
+        </button>
+
+        <!-- CART -->
+        <button 
+          class="icon-btn"
+          onclick="window.location.href='Cart.html'"
+        >
+          <i data-lucide="shopping-cart"></i>
+        </button>
+
+        <!-- PROFILE -->
+        <div class="profile-section">
+
+          <img 
+            src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
+            class="profile-img"
+          >
+
+          <div class="profile-info">
+            <p class="profile-name">${username}</p>
+            <p class="profile-role">${role}</p>
+          </div>
+
+        </div>
+
+        <!-- LOGOUT -->
+        <button class="login-btn" onclick="logout()">
+          Logout
+        </button>
+      `;
+
+    } else {
+
+      navbarAction.innerHTML = `
+      
+        <!-- CART -->
+        <button 
+          class="icon-btn"
+          onclick="window.location.href='Cart.html'"
+        >
+          <i data-lucide="shopping-cart"></i>
+        </button>
+
+        <!-- LOGIN -->
+        <button 
+          class="login-btn"
+          onclick="window.location.href='login.html'"
+        >
+          Masuk
+        </button>
+
+        <!-- REGISTER -->
+        <button 
+          class="register-btn"
+          onclick="window.location.href='register.html'"
+        >
+          Daftar
+        </button>
+      `;
+    }
     // DATA PRODUK
     const products = [
       {
@@ -567,8 +728,8 @@
         name: "Buncis",
         description: "Buncis segar berkualitas tinggi dengan tekstur renyah dan rasa alami yang lezat. Cocok untuk berbagai masakan sehat karena kaya akan serat, vitamin, dan nutrisi harian.",
         price: 10000,
-        unit: "gram",
-        image: "buncis.png",
+        unit: "kg",
+        image: "img/buncis.png",
         weights: [500, 1000, 2000]
       },
       {
@@ -577,7 +738,7 @@
         description: "Cabai merah segar dengan tingkat kepedasan tinggi dan aroma khas, cocok untuk berbagai masakan nusantara.",
         price: 25000,
         unit: "kg",
-        image: "cb mrh.png",
+        image: "img/cb mrh.png",
         weights: [500, 1000, 2000]
       },
       {
@@ -586,7 +747,7 @@
         description: "Bawang merah berkualitas tinggi dengan aroma kuat dan rasa manis alami untuk bumbu masakan.",
         price: 18000,
         unit: "kg",
-        image: "bwg mrh.png",
+        image: "img/bwg mrh.png",
         weights: [500, 1000, 2000]
       },
       {
@@ -595,7 +756,7 @@
         description: "Wortel segar kaya vitamin A dengan rasa manis alami dan tekstur renyah.",
         price: 12000,
         unit: "kg",
-        image: "wortel.png",
+        image: "img/wortel.png",
         weights: [500, 1000, 2000]
       },
       {
@@ -604,7 +765,7 @@
         description: "Bawang putih segar dengan aroma kuat, sangat penting sebagai bumbu dasar masakan.",
         price: 28000,
         unit: "kg",
-        image: "bwg pth.png",
+        image: "img/bwg pth.png",
         weights: [500, 1000, 2000]
       },
       {
@@ -613,7 +774,7 @@
         description: "Tomat segar dengan rasa asam manis alami, cocok untuk masakan maupun jus sehat.",
         price: 15000,
         unit: "kg",
-        image: "tomat.png",
+        image: "img/tomat.png",
         weights: [500, 1000, 2000]
       }
     ];
