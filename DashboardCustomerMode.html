@@ -530,23 +530,26 @@ body{
     </div>
 
     <!-- SEARCH -->
-    <div class="search-wrapper">
+  <div class="search-wrapper">
 
-      <div class="search-box">
+  <div class="search-box">
 
-        <input
-          type="text"
-          placeholder="Search"
-        >
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Cari produk..."
+      onkeyup="searchProduct()"
+    >
 
-        <button>
-          Search
-        </button>
+    <button onclick="searchProduct()">
+      Search
+    </button>
 
-      </div>
+  </div>
 
     </div>
 
+    <!-- ACTION -->
     <div class="action-section">
 
       <!-- BOX -->
@@ -704,7 +707,7 @@ body{
 
                 <h4>Buncis</h4>
 
-                <p>Rp 10.000 / 500 gram</p>
+                <p>Rp 7.000 / kilogram</p>
 
                 <button>Tambahkan</button>
 
@@ -716,7 +719,7 @@ body{
 
                 <h4>Cabai Merah</h4>
 
-                <p>Rp 10.000 / 500 gram</p>
+                <p>Rp 50.000 / kilogram</p>
 
                 <button>Tambahkan</button>
 
@@ -728,7 +731,7 @@ body{
 
                 <h4>Bawang Merah</h4>
 
-                <p>Rp 18.000 / 500 gram</p>
+                <p>Rp 30.000 / kilogram</p>
 
                 <button>Tambahkan</button>
 
@@ -740,7 +743,7 @@ body{
 
                 <h4>Wortel</h4>
 
-                <p>Rp 12.000 / 500 gram</p>
+                <p>Rp 10.000 / kilogram</p>
 
                 <button>Tambahkan</button>
 
@@ -752,7 +755,7 @@ body{
 
                 <h4>Bawang Putih</h4>
 
-                <p>Rp 17.000 / 500 gram</p>
+                <p>Rp 35.000 / kilogram</p>
 
                 <button>Tambahkan</button>
 
@@ -764,7 +767,7 @@ body{
 
                 <h4>Tomat</h4>
 
-                <p>Rp 15.000 / 500 gram</p>
+                <p>Rp 15.000 / kilogram</p>
 
                 <button>Tambahkan</button>
 
@@ -812,7 +815,34 @@ body{
 </div>
 
 <script>
+    <script>
     lucide.createIcons();
+
+    function searchProduct() {
+
+        let input = document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+        let products = document.querySelectorAll(".product-card");
+
+        products.forEach(function(product){
+
+            let productName = product
+                .querySelector("h4")
+                .innerText
+                .toLowerCase();
+
+            if(productName.includes(input)){
+                product.style.display = "flex";
+            } else {
+                product.style.display = "none";
+            }
+
+        });
+
+    }
 </script>
 </body>
 </html>

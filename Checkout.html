@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agrovia - Checkout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #FAFAF7;
+      color: #1a1a1a;
+      padding-bottom: 100px;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      width: 100%;
+      background: #EAC800;
+      border-bottom: 1px solid #EAC800;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .navbar-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 12px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .nav-logo-icon-img {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-logo-text-img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-search {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-search-box {
+      width: 100%;
+      max-width: 450px;
+      height: 44px;
+      background: #FFFDF7;
+      border-radius: 999px;
+      border: 1px solid #9D9D9D;
+      display: flex;
+      align-items: center;
+      padding-left: 18px;
+      padding-right: 4px;
+    }
+
+    .nav-search-box input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 13px;
+      color: #232323;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-search-box input::placeholder {
+      color: #9D9D9D;
+    }
+
+    .nav-search-btn {
+      background: #254E06;
+      color: #fff;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 0 24px;
+      height: 36px;
+      border-radius: 999px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-search-btn:hover {
+      background: #254E06;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .nav-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #254E06;
+      color: #FFFDF7;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .nav-icon-btn:hover {
+      transform: scale(1.06);
+    }
+
+    .nav-icon-btn i {
+      color: #FFFDF7;
+      width: 18px;
+      height: 18px;
+    }
+
+    .nav-masuk {
+      height: 40px;
+      padding: 0 22px;
+      border-radius: 10px;
+      border: 1px solid #60A030;
+      background: #F8FFF3;
+      color: #60A030;
+      font-weight: 600;
+      font-size: 13px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-masuk:hover {
+      background: #dfe7ca;
+    }
+
+    .nav-daftar {
+      height: 40px;
+      padding: 0 22px;
+      border-radius: 10px;
+      background: #254E06;
+      color: #FEFFED;
+      border: none;
+      font-weight: 600;
+      font-size: 13px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-daftar:hover {
+      background: #244807;
+    }
+
+    /* ── MAIN ── */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 24px;
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+    }
+
+    /* ── LAYOUT ── */
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: #fff;
+      border: 1.5px solid #E8E8D8;
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .card + .card {
+      margin-top: 16px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 14px;
+    }
+
+    /* ── ADDRESS ── */
+    .addr-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .addr-phone {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 3px;
+    }
+
+    .addr-detail {
+      font-size: 13px;
+      color: #777;
+    }
+
+    /* ── DELIVERY ── */
+    .slot-grid {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .slot-card {
+      border: 1.5px solid #E0E0D0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      min-width: 110px;
+      cursor: pointer;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      background: #fff;
+    }
+
+    .slot-card:hover {
+      border-color: #3B8C2A;
+    }
+
+    .slot-card.active {
+      border-color: #2E5A09;
+      box-shadow: 0 0 0 2.5px rgba(46, 90, 9, 0.12);
+    }
+
+    .slot-day {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .slot-time {
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .slot-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2E5A09;
+      margin-top: 6px;
+    }
+
+    /* ── NOTE ── */
+    .note-area {
+      width: 100%;
+      min-height: 100px;
+      border: 1.5px solid #E0E0D0;
+      border-radius: 10px;
+      padding: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fff;
+    }
+
+    .note-area:focus {
+      border-color: #3B8C2A;
+    }
+
+    .note-area::placeholder {
+      color: #bbb;
+    }
+
+    /* ── ORDER SUMMARY ── */
+    .order-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+    }
+
+    .order-item + .order-item {
+      border-top: 1px solid #F0F0E8;
+    }
+
+    .order-item img {
+      width: 52px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #F0F0E8;
+      background: #FAFAF7;
+      flex-shrink: 0;
+      padding: 2px;
+    }
+
+    .order-item-info {
+      flex: 1;
+    }
+
+    .order-item-name {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .order-item-meta {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .order-item-price {
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .order-divider {
+      border: none;
+      border-top: 1.5px solid #E8E8D8;
+      margin: 12px 0;
+    }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      border-top: 1.5px solid #E8E8D8;
+      padding-top: 12px;
+      margin-top: 12px;
+    }
+
+    .order-total .amount {
+      color: #2E5A09;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    /* ── PAYMENT ── */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .pay-card {
+      border: 1.5px solid #E0E0D0;
+      border-radius: 10px;
+      padding: 14px;
+      cursor: pointer;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .pay-card:hover {
+      border-color: #3B8C2A;
+    }
+
+    .pay-card.active {
+      border-color: #2E5A09;
+      box-shadow: 0 0 0 2.5px rgba(46, 90, 9, 0.12);
+    }
+
+    .pay-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2E5A09;
+      margin-bottom: 4px;
+    }
+
+    .pay-desc {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.4;
+    }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1.5px solid #E8E8D8;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      z-index: 99;
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.07);
+    }
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid #E0E0D0;
+      background: #fff;
+      color: #1a1a1a;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+      white-space: nowrap;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .btn-back:hover {
+      border-color: #2E5A09;
+      color: #2E5A09;
+    }
+
+    .btn-back i {
+      width: 16px;
+      height: 16px;
+    }
+
+    .bottom-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .bottom-total {
+      text-align: right;
+    }
+
+    .bottom-total-label {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 2px;
+    }
+
+    .bottom-total-price {
+      font-size: 22px;
+      font-weight: 800;
+      color: #2E5A09;
+    }
+
+    .btn-bayar {
+      background: #2E5A09;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 48px;
+      font-size: 15px;
+      font-weight: 700;
+      transition: background 0.2s;
+      white-space: nowrap;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .btn-bayar:hover {
+      background: #3B7210;
+    }
+
+    .btn-bayar:active {
+      transform: scale(0.98);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .payment-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .main {
+        padding: 20px 14px;
+      }
+
+      .payment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .slot-grid {
+        gap: 7px;
+      }
+
+      .slot-card {
+        min-width: 88px;
+      }
+
+      .bottom-bar {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="nav-logo" onclick="location.href='index.html'">
+        <img src="logo.png" alt="" class="nav-logo-icon-img" />
+        <img src="tekslogo.png" alt="Agrovia" class="nav-logo-text-img" />
+      </div>
+      <div class="nav-search">
+        <div class="nav-search-box">
+          <input type="text" placeholder="Search" />
+          <button class="nav-search-btn">Search</button>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-icon-btn"><i data-lucide="package-2"></i></button>
+        <button class="nav-icon-btn"><i data-lucide="shopping-cart"></i></button>
+        <button class="nav-masuk">Masuk</button>
+        <button class="nav-daftar">Daftar</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="page-title">Checkout</div>
+
+    <div class="checkout-layout">
+
+      <!-- LEFT -->
+      <div>
+        <!-- Alamat -->
+        <div class="card">
+          <div class="card-title">Alamat Pengiriman</div>
+          <div class="addr-name">Citra Andi</div>
+          <div class="addr-phone">12345678910</div>
+          <div class="addr-detail">Jl. Veteran No. 4, Klojen, Malang, Jawa Timur</div>
+        </div>
+
+        <!-- Metode Pengiriman -->
+        <div class="card">
+          <div class="card-title">Pilih Metode Pengiriman</div>
+          <div class="slot-grid" id="slotGrid">
+            <div class="slot-card active" data-slot="0"><div class="slot-day">Hari Ini</div><div class="slot-time">08.00 – 10.00</div><div class="slot-price">Rp 12.000</div></div>
+            <div class="slot-card" data-slot="1"><div class="slot-day">Hari Ini</div><div class="slot-time">10.00 – 12.00</div><div class="slot-price">Rp 12.000</div></div>
+            <div class="slot-card" data-slot="2"><div class="slot-day">Hari Ini</div><div class="slot-time">12.00 – 14.00</div><div class="slot-price">Rp 12.000</div></div>
+            <div class="slot-card" data-slot="3"><div class="slot-day">Hari Ini</div><div class="slot-time">14.00 – 16.00</div><div class="slot-price">Rp 12.000</div></div>
+            <div class="slot-card" data-slot="4"><div class="slot-day">Hari Ini</div><div class="slot-time">16.00 – 18.00</div><div class="slot-price">Rp 12.000</div></div>
+          </div>
+        </div>
+
+        <!-- Catatan -->
+        <div class="card">
+          <div class="card-title">Catatan untuk Penjual (Opsional)</div>
+          <textarea class="note-area" id="noteArea" placeholder="Tulis catatan untuk penjual…"></textarea>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="card">
+        <div class="card-title">Ringkasan Pesanan</div>
+        <div id="orderItems"></div>
+        <hr class="order-divider" />
+        <div class="order-row"><span>Subtotal</span><span id="subtotalVal">Rp 0</span></div>
+        <div class="order-row"><span>Ongkos kirim</span><span>Rp 12.000</span></div>
+        <div class="order-total"><span>Total Pembayaran</span><span class="amount" id="totalVal">Rp 0</span></div>
+      </div>
+
+    </div>
+
+    <!-- Metode Pembayaran -->
+    <div class="card" style="margin-top:16px">
+      <div class="card-title">Pilih Metode Pembayaran</div>
+      <div class="payment-grid" id="payGrid">
+        <div class="pay-card active" data-pay="transfer"><div class="pay-name">Transfer Bank</div><div class="pay-desc">Transfer di ATM / banking / m-banking</div></div>
+        <div class="pay-card" data-pay="ewallet"><div class="pay-name">E-Wallet</div><div class="pay-desc">Transfer di ATM / banking / m-banking</div></div>
+        <div class="pay-card" data-pay="qris"><div class="pay-name">QRIS</div><div class="pay-desc">Pembayaran via aplikasi dengan scan QR code</div></div>
+        <div class="pay-card" data-pay="cod"><div class="pay-name">Bayar di Tempat</div><div class="pay-desc">Pembayaran langsung ditempat saat pesanan diterima</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <button class="btn-back" onclick="location.href='cart.html'"><i data-lucide="arrow-left"></i> Kembali ke Keranjang</button>
+    <div class="bottom-right">
+      <div class="bottom-total">
+        <div class="bottom-total-label">Total Pembayaran</div>
+        <div class="bottom-total-price" id="bottomTotal">Rp 0</div>
+      </div>
+      <button class="btn-bayar" onclick="handleBayar()">Bayar</button>
+    </div>
+  </div>
+
+  <script>
+    const ONGKIR = 12000;
+
+    const products = [
+      { id: "buncis", name: "Buncis", price: 10000, unit: "gram", image: "buncis.png" },
+      { id: "cabai-merah", name: "Cabai Merah", price: 25000, unit: "kg", image: "cb mrh.png" },
+      { id: "bawang-merah", name: "Bawang Merah", price: 18000, unit: "kg", image: "bwg mrh.png" },
+      { id: "wortel", name: "Wortel", price: 12000, unit: "kg", image: "wortel.png" },
+      { id: "bawang-putih", name: "Bawang Putih", price: 28000, unit: "kg", image: "bwg pth.png" },
+      { id: "tomat", name: "Tomat", price: 15000, unit: "kg", image: "tomat.png" }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('agrovia_cart') || '[]');
+    if (cart.length === 0) {
+      cart = [
+        { ...products[3], qty: 1, selectedWeight: 500 },
+        { ...products[2], qty: 1, selectedWeight: 500 },
+        { ...products[1], qty: 1, selectedWeight: 500 }
+      ];
+    }
+
+    function renderOrder() {
+      const el = document.getElementById('orderItems');
+      let subtotal = 0;
+      el.innerHTML = cart.map(item => {
+        const sub = item.price * item.qty;
+        subtotal += sub;
+        return `
+          <div class="order-item">
+            <img src="${item.image}" alt="${item.name}" onerror="this.src=''" />
+            <div class="order-item-info">
+              <div class="order-item-name">${item.name}</div>
+              <div class="order-item-meta">${item.selectedWeight || 500} ${item.unit} &nbsp; x${item.qty}</div>
+            </div>
+            <div class="order-item-price">Rp ${sub.toLocaleString('id-ID')}</div>
+          </div>`;
+      }).join('');
+      const total = subtotal + ONGKIR;
+      document.getElementById('subtotalVal').textContent = 'Rp ' + subtotal.toLocaleString('id-ID');
+      document.getElementById('totalVal').textContent = 'Rp ' + total.toLocaleString('id-ID');
+      document.getElementById('bottomTotal').textContent = 'Rp ' + total.toLocaleString('id-ID');
+    }
+
+    // Slot selection
+    document.getElementById('slotGrid').addEventListener('click', e => {
+      const card = e.target.closest('.slot-card');
+      if (!card) return;
+      document.querySelectorAll('.slot-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
+
+    // Payment selection
+    document.getElementById('payGrid').addEventListener('click', e => {
+      const card = e.target.closest('.pay-card');
+      if (!card) return;
+      document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
+
+    renderOrder();
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>
