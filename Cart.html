@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agrovia - Keranjang Belanja</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #FAFAF7;
+      color: #1a1a1a;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      width: 100%;
+      background: #EAC800;
+      border-bottom: 1px solid #EAC800;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .navbar-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 12px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .nav-logo-icon-img {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-logo-text-img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-search {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-search-box {
+      width: 100%;
+      max-width: 450px;
+      height: 44px;
+      background: #FFFDF7;
+      border-radius: 999px;
+      border: 1px solid #9D9D9D;
+      display: flex;
+      align-items: center;
+      padding-left: 18px;
+      padding-right: 4px;
+    }
+
+    .nav-search-box input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 13px;
+      color: #232323;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-search-box input::placeholder {
+      color: #9D9D9D;
+    }
+
+    .nav-search-btn {
+      background: #254E06;
+      color: #fff;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 0 24px;
+      height: 36px;
+      border-radius: 999px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-search-btn:hover {
+      background: #254E06;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .nav-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #254E06;
+      color: #FFFDF7;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .nav-icon-btn:hover {
+      transform: scale(1.06);
+    }
+
+    .nav-icon-btn i {
+      color: #FFFDF7;
+      width: 18px;
+      height: 18px;
+    }
+
+    .nav-masuk {
+      height: 40px;
+      padding: 0 22px;
+      border-radius: 10px;
+      border: 1px solid #60A030;
+      background: #F8FFF3;
+      color: #60A030;
+      font-weight: 600;
+      font-size: 13px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-masuk:hover {
+      background: #dfe7ca;
+    }
+
+    .nav-daftar {
+      height: 40px;
+      padding: 0 22px;
+      border-radius: 10px;
+      background: #254E06;
+      color: #FEFFED;
+      border: none;
+      font-weight: 600;
+      font-size: 13px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-daftar:hover {
+      background: #244807;
+    }
+
+    /* ── MAIN ── */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+    }
+
+    /* ── CART GRID ── */
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ── CART TABLE ── */
+    .cart-table-wrap {
+      background: #fff;
+      border: 1.5px solid #E8E8D8;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .cart-table-head {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      padding: 14px 20px;
+      border-bottom: 1.5px solid #F0F0E8;
+      background: #FAFAF7;
+    }
+
+    .cart-table-head span {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .cart-table-head span:not(:first-child) {
+      text-align: center;
+    }
+
+    .cart-items {
+      padding: 0 8px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      align-items: center;
+      padding: 16px 12px;
+      border-bottom: 1px solid #F0F0E8;
+      gap: 8px;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cart-item-img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1.5px solid #F0F0E8;
+      background: #FAFAF7;
+      flex-shrink: 0;
+      padding: 4px;
+    }
+
+    .cart-item-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+
+    .cart-item-weight {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .cart-item-price {
+      font-size: 13px;
+      color: #1a1a1a;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .qty-ctrl {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #ddd;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #fff;
+      justify-self: center;
+    }
+
+    .qty-btn {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: #1a1a1a;
+      transition: background 0.2s;
+    }
+
+    .qty-btn:hover {
+      background: #D8F3DC;
+      color: #2E5A09;
+    }
+
+    .qty-btn i {
+      width: 14px;
+      height: 14px;
+    }
+
+    .qty-val {
+      min-width: 32px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .cart-subtotal {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-align: center;
+    }
+
+    .cart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-top: 1.5px solid #F0F0E8;
+      background: #FAFAF7;
+    }
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid #3B8C2A;
+      background: transparent;
+      color: #2E5A09;
+      border-radius: 10px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .btn-back:hover {
+      background: #3B8C2A;
+      color: #fff;
+    }
+
+    .btn-hapus {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: none;
+      color: #888;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .btn-hapus:hover {
+      color: #e53e3e;
+    }
+
+    .btn-hapus i {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ── SIDEBAR ── */
+    .cart-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .summary-card {
+      background: #fff;
+      border: 1.5px solid #E8E8D8;
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .summary-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .summary-divider {
+      border: none;
+      border-top: 1.5px solid #E8E8D8;
+      margin: 12px 0;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .summary-total .amount {
+      color: #2E5A09;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .btn-checkout {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #2E5A09;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 16px;
+      transition: background 0.2s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .btn-checkout:hover {
+      background: #3B7210;
+    }
+
+    .btn-checkout i {
+      width: 18px;
+      height: 18px;
+    }
+
+    .features-card {
+      background: #fff;
+      border: 1.5px solid #E8E8D8;
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .feat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #2E5A09;
+    }
+
+    .feat-item i {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    /* ── RECOMMENDATIONS ── */
+    .recom-section {
+      margin-top: 36px;
+    }
+
+    .recom-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 18px;
+    }
+
+    .recom-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .prod-card {
+      background: #fff;
+      border: 1.5px solid #E8E8D8;
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .prod-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .prod-card-img {
+      width: 100%;
+      height: 110px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #F7F7F0;
+    }
+
+    .prod-card-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .prod-card-price {
+      font-size: 11px;
+      color: #777;
+    }
+
+    .prod-card-btn {
+      background: #2E5A09;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin-top: auto;
+      transition: background 0.2s;
+    }
+
+    .prod-card-btn:hover {
+      background: #244807;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #F0EFE6;
+      border-top: 1px solid #E0DFCD;
+      margin-top: 40px;
+      padding: 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #2E5A09;
+    }
+
+    /* ── EMPTY ── */
+    .empty-cart {
+      text-align: center;
+      padding: 60px 20px;
+      color: #888;
+    }
+
+    .empty-cart i {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      color: #ccc;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .recom-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .recom-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cart-table-head {
+        display: none;
+      }
+
+      .cart-item {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="nav-logo" onclick="location.href='index.html'">
+        <img src="logo.png" alt="" class="nav-logo-icon-img" />
+        <img src="tekslogo.png" alt="Agrovia" class="nav-logo-text-img" />
+      </div>
+      <div class="nav-search">
+        <div class="nav-search-box">
+          <input type="text" placeholder="Search" />
+          <button class="nav-search-btn">Search</button>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-icon-btn"><i data-lucide="package-2"></i></button>
+        <button class="nav-icon-btn"><i data-lucide="shopping-cart"></i></button>
+        <button class="nav-masuk">Masuk</button>
+        <button class="nav-daftar">Daftar</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="page-title">Keranjang Belanja</div>
+
+    <div class="cart-layout">
+
+      <!-- TABLE -->
+      <div>
+        <div class="cart-table-wrap">
+          <div class="cart-table-head">
+            <span>Produk</span>
+            <span>Harga</span>
+            <span>Jumlah</span>
+            <span>Subtotal</span>
+          </div>
+          <div class="cart-items" id="cartItems">
+            <div class="empty-cart"><i data-lucide="shopping-cart"></i><p>Keranjang kosong</p></div>
+          </div>
+          <div class="cart-footer">
+            <button class="btn-back" onclick="location.href='index.html'"><i data-lucide="arrow-left" style="width:14px;height:14px"></i> Lanjut Belanja</button>
+            <button class="btn-hapus" onclick="clearCart()"><i data-lucide="trash-2"></i> Hapus Semua</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="cart-sidebar">
+        <div class="summary-card">
+          <div class="summary-title">Ringkasan Belanja</div>
+          <div class="summary-row"><span id="subtotalLabel">Subtotal 0 item</span><span id="subtotalVal">Rp 0</span></div>
+          <hr class="summary-divider" />
+          <div class="summary-total"><span>Total</span><span class="amount" id="totalVal">Rp 0</span></div>
+          <button class="btn-checkout" onclick="location.href='checkout.html'"><i data-lucide="shopping-bag"></i> Checkout Sekarang</button>
+        </div>
+        <div class="features-card">
+          <div class="feat-item"><i data-lucide="truck"></i> Pengiriman Cepat</div>
+          <div class="feat-item"><i data-lucide="shield-check"></i> Kualitas Terjamin</div>
+          <div class="feat-item"><i data-lucide="tag"></i> Harga Terbaik</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- REKOMENDASI -->
+    <div class="recom-section">
+      <div class="recom-title">Mungkin Kamu Juga Suka</div>
+      <div class="recom-grid" id="recomGrid"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Agrovia</div>
+        <div class="footer-copy">© 2024 Agro Sustainable Agriculture. All rights reserved.</div>
+      </div>
+      <div class="footer-links">
+        <a href="#">Support Center</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sustainability Report</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      { id: "buncis", name: "Buncis", price: 10000, unit: "gram", image: "buncis.png" },
+      { id: "cabai-merah", name: "Cabai Merah", price: 25000, unit: "kg", image: "cb mrh.png" },
+      { id: "bawang-merah", name: "Bawang Merah", price: 18000, unit: "kg", image: "bwg mrh.png" },
+      { id: "wortel", name: "Wortel", price: 12000, unit: "kg", image: "wortel.png" },
+      { id: "bawang-putih", name: "Bawang Putih", price: 28000, unit: "kg", image: "bwg pth.png" },
+      { id: "tomat", name: "Tomat", price: 15000, unit: "kg", image: "tomat.png" }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('agrovia_cart') || '[]');
+
+    // seed cart if empty for demo
+    if (cart.length === 0) {
+      cart = [
+        { ...products[0], qty: 1, selectedWeight: 500 },
+        { ...products[3], qty: 1, selectedWeight: 500 },
+        { ...products[2], qty: 1, selectedWeight: 500 }
+      ];
+      localStorage.setItem('agrovia_cart', JSON.stringify(cart));
+    }
+
+    function saveCart() {
+      localStorage.setItem('agrovia_cart', JSON.stringify(cart));
+    }
+
+    function changeQty(id, d) {
+      const item = cart.find(x => x.id === id);
+      if (!item) return;
+      item.qty = Math.max(1, item.qty + d);
+      saveCart();
+      renderCart();
+    }
+
+    function removeItem(id) {
+      cart = cart.filter(x => x.id !== id);
+      saveCart();
+      renderCart();
+    }
+
+    function clearCart() {
+      if (!confirm('Hapus semua item dari keranjang?')) return;
+      cart = [];
+      saveCart();
+      renderCart();
+    }
+
+    function renderCart() {
+      const el = document.getElementById('cartItems');
+      if (cart.length === 0) {
+        el.innerHTML = '<div class="empty-cart"><i data-lucide="shopping-cart"></i><p>Keranjang kosong</p></div>';
+        document.getElementById('subtotalLabel').textContent = 'Subtotal 0 item';
+        document.getElementById('subtotalVal').textContent = 'Rp 0';
+        document.getElementById('totalVal').textContent = 'Rp 0';
+        lucide.createIcons();
+        return;
+      }
+      let subtotal = 0;
+      el.innerHTML = cart.map(item => {
+        const sub = item.price * item.qty;
+        subtotal += sub;
+        return `
+          <div class="cart-item">
+            <div class="cart-item-left">
+              <img class="cart-item-img" src="${item.image}" alt="${item.name}" onerror="this.src=''" />
+              <div>
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-weight">${item.selectedWeight || 500} ${item.unit}</div>
+              </div>
+            </div>
+            <div class="cart-item-price">${item.price.toLocaleString('id-ID')} / ${item.unit}</div>
+            <div class="qty-ctrl">
+              <button class="qty-btn" onclick="changeQty('${item.id}', -1)"><i data-lucide="minus"></i></button>
+              <span class="qty-val">${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty('${item.id}', 1)"><i data-lucide="plus"></i></button>
+            </div>
+            <div class="cart-subtotal">Rp ${sub.toLocaleString('id-ID')}</div>
+          </div>`;
+      }).join('');
+
+      const n = cart.reduce((a, x) => a + x.qty, 0);
+      document.getElementById('subtotalLabel').textContent = `Subtotal ${n} item`;
+      document.getElementById('subtotalVal').textContent = 'Rp ' + subtotal.toLocaleString('id-ID');
+      document.getElementById('totalVal').textContent = 'Rp ' + subtotal.toLocaleString('id-ID');
+      lucide.createIcons();
+    }
+
+    function renderRecom() {
+      const grid = document.getElementById('recomGrid');
+      grid.innerHTML = products.map(p => `
+        <div class="prod-card" onclick="location.href='detail.html?id=${p.id}'">
+          <img class="prod-card-img" src="${p.image}" alt="${p.name}" onerror="this.src=''" />
+          <div class="prod-card-name">${p.name}</div>
+          <div class="prod-card-price">Rp ${p.price.toLocaleString('id-ID')} / ${p.unit}</div>
+          <button class="prod-card-btn" onclick="event.stopPropagation();addToCart('${p.id}')">Tambahkan</button>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      const p = products.find(x => x.id === id);
+      if (!p) return;
+      const ex = cart.find(x => x.id === id);
+      if (ex) {
+        ex.qty++;
+      } else {
+        cart.push({ ...p, qty: 1 });
+      }
+      saveCart();
+      renderCart();
+    }
+
+    renderCart();
+    renderRecom();
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>

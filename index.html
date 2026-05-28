@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Agrovia - Belanja Sayuran Segar</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#FAFAF7;color:#1a1a1a}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+img{max-width:100%;display:block}
+
+/* ── NAVBAR ── */
+.navbar{width:100%;background:#E3C800;border-bottom:1px solid #d4bc00;position:sticky;top:0;z-index:50}
+.navbar-inner{max-width:1440px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.nav-logo-icon svg{width:44px;height:44px}
+.nav-logo-text{font-size:22px;font-weight:800;color:#2E5A09;letter-spacing:-0.5px;font-style:italic}
+.nav-logo-text span{color:#2E5A09}
+.nav-search{flex:1;display:flex;justify-content:center}
+.nav-search-box{width:100%;max-width:450px;height:44px;background:#E4E1DB;border-radius:999px;border:1px solid #8D8D8D;display:flex;align-items:center;padding-left:18px;padding-right:4px;gap:8px}
+.nav-search-box input{flex:1;background:transparent;border:none;outline:none;font-size:13px;color:#4A4A4A;font-family:'Plus Jakarta Sans',sans-serif}
+.nav-search-box input::placeholder{color:#9B9B9B}
+.nav-search-btn{background:#2E5A09;color:#fff;border:none;font-size:13px;font-weight:600;padding:0 24px;height:36px;border-radius:999px;transition:background .2s;font-family:'Plus Jakarta Sans',sans-serif}
+.nav-search-btn:hover{background:#244807}
+.nav-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-icon-btn{width:40px;height:40px;border-radius:50%;background:#2E5A09;border:none;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.nav-icon-btn:hover{transform:scale(1.06)}
+.nav-icon-btn i{color:#fff;width:18px;height:18px}
+.nav-masuk{height:40px;padding:0 22px;border-radius:10px;border:1px solid #7A9660;background:#E7ECD8;color:#4E7B2B;font-weight:600;font-size:13px;transition:background .2s;font-family:'Plus Jakarta Sans',sans-serif}
+.nav-masuk:hover{background:#dfe7ca}
+.nav-daftar{height:40px;padding:0 22px;border-radius:10px;background:#2E5A09;color:#fff;border:none;font-weight:600;font-size:13px;transition:background .2s;font-family:'Plus Jakarta Sans',sans-serif}
+.nav-daftar:hover{background:#244807}
+
+/* ── HERO ── */
+.hero{max-width:1440px;margin:28px auto;padding:0 32px}
+.hero-banner{background:#3B8C2A;border-radius:20px;padding:40px 48px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;min-height:220px}
+.hero-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(255,255,255,.06),transparent 60%);pointer-events:none}
+.hero-left{z-index:1;max-width:480px}
+.hero-label{font-size:13px;color:rgba(255,255,255,.88);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.hero-title{font-size:34px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:28px}
+.hero-features{display:flex;gap:28px;flex-wrap:wrap}
+.hero-feat{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.9);font-size:13px;font-weight:500}
+.hero-feat i{width:18px;height:18px;color:rgba(255,255,255,.9)}
+.hero-img{position:absolute;right:32px;bottom:0;height:210px;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,.2))}
+
+/* ── SECTION ── */
+.section{max-width:1440px;margin:0 auto;padding:32px 32px 0}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.section-title{font-size:17px;font-weight:700;color:#1a1a1a}
+.section-link{font-size:13px;color:#2E5A09;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px}
+.section-link:hover{text-decoration:underline}
+
+/* ── PROMO ── */
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.promo-card{background:#D8F0B0;border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;overflow:hidden;position:relative}
+.promo-img{width:140px;height:110px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 4px 12px rgba(0,0,0,.15))}
+.promo-info{flex:1}
+.promo-title{font-size:16px;font-weight:800;color:#1a1a1a;margin-bottom:8px}
+.promo-desc{font-size:12px;color:#4a4a4a;line-height:1.6;margin-bottom:14px}
+.promo-btn{background:transparent;border:1.5px solid #2E5A09;color:#2E5A09;border-radius:8px;padding:7px 18px;font-size:12px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s}
+.promo-btn:hover{background:#2E5A09;color:#fff}
+
+/* ── FILTER ── */
+.filter-bar{max-width:1440px;margin:28px auto 0;padding:0 32px}
+.filter-btn{background:#3B8C2A;color:#fff;border:none;border-radius:10px;padding:10px 28px;font-size:14px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* ── PRODUCTS ── */
+.products-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.sort-select{border:1px solid #ddd;border-radius:8px;padding:7px 14px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;background:#fff;cursor:pointer;outline:none}
+.products-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.product-card{background:#fff;border:1.5px solid #E8E8D8;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,transform .2s}
+.product-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.1);transform:translateY(-3px)}
+.product-card-img{width:100%;height:120px;object-fit:contain;border-radius:10px;background:#F7F7F0}
+.product-card-name{font-size:13px;font-weight:600;color:#1a1a1a}
+.product-card-price{font-size:12px;color:#555;margin-top:-4px}
+.product-card-btn{background:#2E5A09;color:#fff;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;transition:background .2s;margin-top:auto}
+.product-card-btn:hover{background:#244807}
+
+/* ── LIHAT SEMUA ── */
+.see-all-wrap{text-align:center;padding:28px 0}
+.see-all-btn{border:1.5px solid #ccc;background:transparent;color:#1a1a1a;border-radius:8px;padding:10px 28px;font-size:13px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s}
+.see-all-btn:hover{border-color:#2E5A09;color:#2E5A09}
+
+/* ── FOOTER ── */
+footer{background:#F0EFE6;border-top:1px solid #E0DFCD;margin-top:32px;padding:28px 32px}
+.footer-inner{max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-brand{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.footer-copy{font-size:12px;color:#777}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:#555;transition:color .2s}
+.footer-links a:hover{color:#2E5A09}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){.products-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){
+  .navbar-inner{padding:10px 16px;gap:12px}
+  .nav-search{display:none}
+  .hero{padding:0 16px;margin:16px auto}
+  .hero-banner{padding:24px}
+  .hero-title{font-size:22px}
+  .hero-img{height:130px}
+  .section{padding:20px 16px 0}
+  .promo-grid{grid-template-columns:1fr}
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+  .filter-bar{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="44" height="44" rx="10" fill="#2E5A09"/>
+          <path d="M10 34 C10 20 24 10 36 10 C36 24 24 34 10 34Z" fill="#6AAB2E"/>
+          <path d="M10 34 L24 20" stroke="#E3C800" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="nav-logo-text">agr<span style="font-style:normal">o</span>via</span>
+    </div>
+    <div class="nav-search">
+      <div class="nav-search-box">
+        <input type="text" placeholder="Search" id="searchInput"/>
+        <button class="nav-search-btn" onclick="doSearch()">Search</button>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" title="Pesanan"><i data-lucide="package-2"></i></button>
+      <button class="nav-icon-btn" title="Keranjang" onclick="location.href='cart.html'"><i data-lucide="shopping-cart"></i></button>
+      <button class="nav-masuk">Masuk</button>
+      <button class="nav-daftar">Daftar</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-banner">
+    <div class="hero-left">
+      <div class="hero-label">Selamat datang di Agrovia 🌿</div>
+      <div class="hero-title">Belanja Sayuran Segar<br/>Lebih Mudah &amp; Sehat</div>
+      <div class="hero-features">
+        <div class="hero-feat"><i data-lucide="shield-check"></i> Kualitas Terjamin</div>
+        <div class="hero-feat"><i data-lucide="truck"></i> Pengiriman Cepat</div>
+        <div class="hero-feat"><i data-lucide="tag"></i> Harga Terbaik</div>
+      </div>
+    </div>
+    <img class="hero-img"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Salad_garden_SB.jpg/640px-Salad_garden_SB.jpg"
+      alt="Sayuran Segar"
+      onerror="this.style.display='none'"
+    />
+  </div>
+</div>
+
+<!-- PROMO SPESIAL -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">Promo Spesial</div>
+    <div class="section-link">Lihat Semua &gt;</div>
+  </div>
+  <div class="promo-grid">
+    <div class="promo-card">
+      <img class="promo-img"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Salad_garden_SB.jpg/320px-Salad_garden_SB.jpg"
+        alt="Sayur" onerror="this.src=''"/>
+      <div class="promo-info">
+        <div class="promo-title">Diskon Sayur Segar hingga 30%</div>
+        <div class="promo-desc">Belanja buah-buahan segar di Agrovia, harga terjangkau, kualitas terjamin. Belanja lebih hemat untuk keluarga sehat.</div>
+        <button class="promo-btn">Belanja Sekarang</button>
+      </div>
+    </div>
+    <div class="promo-card">
+      <img class="promo-img"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_pasar_buah.jpg/320px-Hapus_pasar_buah.jpg"
+        alt="Buah" onerror="this.src=''"/>
+      <div class="promo-info">
+        <div class="promo-title">Diskon Buah Segar hingga 30%</div>
+        <div class="promo-desc">Belanja buah-buahan segar di Agrovia, harga terjangkau, kualitas terjamin. Belanja lebih hemat untuk keluarga sehat.</div>
+        <button class="promo-btn">Belanja Sekarang</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar" style="margin-top:28px">
+  <button class="filter-btn">Semua</button>
+</div>
+
+<!-- PRODUK PILIHAN -->
+<div class="section" style="margin-top:16px">
+  <div class="products-header">
+    <div class="section-title">Produk Pilihan</div>
+    <select class="sort-select">
+      <option>Terbaru</option>
+      <option>Harga Terendah</option>
+      <option>Harga Tertinggi</option>
+    </select>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<!-- LIHAT SEMUA -->
+<div class="see-all-wrap">
+  <button class="see-all-btn">Lihat Semua Produk &gt;</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Agrovia</div>
+      <div class="footer-copy">© 2024 Agro Sustainable Agriculture. All rights reserved.</div>
+    </div>
+    <div class="footer-links">
+      <a href="#">Support Center</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Sustainability Report</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── DATA PRODUK ──
+const products = [
+  { id:"buncis", name:"Buncis", description:"Buncis segar berkualitas tinggi dengan tekstur renyah dan rasa alami yang lezat. Cocok untuk berbagai masakan sehat karena kaya akan serat, vitamin, dan nutrisi harian.", price:10000, unit:"gram", image:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Green_beans_in_a_bowl.jpg/320px-Green_beans_in_a_bowl.jpg", weights:[500,1000,2000] },
+  { id:"cabai-merah", name:"Cabai Merah", description:"Cabai merah segar dengan tingkat kepedasan tinggi dan aroma khas, cocok untuk berbagai masakan nusantara.", price:25000, unit:"kg", image:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Chili_peppers.jpg/320px-Chili_peppers.jpg", weights:[500,1000,2000] },
+  { id:"bawang-merah", name:"Bawang Merah", description:"Bawang merah berkualitas tinggi dengan aroma kuat dan rasa manis alami untuk bumbu masakan.", price:18000, unit:"gram", image:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Red_onion.jpg/320px-Red_onion.jpg", weights:[500,1000,2000] },
+  { id:"wortel", name:"Wortel", description:"Wortel segar kaya vitamin A dengan rasa manis alami dan tekstur renyah.", price:12000, unit:"gram", image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vegetable-Carrot-Bundle-wShadow.svg/240px-Vegetable-Carrot-Bundle-wShadow.svg.png", weights:[500,1000,2000] },
+  { id:"bawang-putih", name:"Bawang Putih", description:"Bawang putih segar dengan aroma kuat, sangat penting sebagai bumbu dasar masakan.", price:17000, unit:"gram", image:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Garlic-Sila-Knoblauch.jpg/320px-Garlic-Sila-Knoblauch.jpg", weights:[500,1000,2000] },
+  { id:"tomat", name:"Tomat", description:"Tomat segar dengan rasa asam manis alami, cocok untuk masakan maupun jus sehat.", price:15000, unit:"gram", image:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/320px-Tomato_je.jpg", weights:[500,1000,2000] }
+];
+
+// ── CART ──
+let cart = JSON.parse(localStorage.getItem('agrovia_cart') || '[]');
+function saveCart(){ localStorage.setItem('agrovia_cart', JSON.stringify(cart)); }
+function addToCart(productId){
+  const p = products.find(x=>x.id===productId);
+  if(!p) return;
+  const existing = cart.find(x=>x.id===productId);
+  if(existing){ existing.qty++; } else { cart.push({...p, qty:1, selectedWeight:p.weights[0]}); }
+  saveCart();
+  showToast(`✓ ${p.name} ditambahkan ke keranjang`);
+}
+
+// ── TOAST ──
+function showToast(msg){
+  let t = document.getElementById('toast');
+  if(!t){ t=document.createElement('div'); t.id='toast'; t.style.cssText='position:fixed;bottom:28px;right:28px;background:#2E5A09;color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transform:translateY(12px);transition:all .3s;pointer-events:none;max-width:300px'; document.body.appendChild(t); }
+  t.textContent=msg; t.style.opacity='1'; t.style.transform='translateY(0)';
+  clearTimeout(t._t); t._t=setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateY(12px)'; },2800);
+}
+
+// ── RENDER PRODUK ──
+function renderProducts(){
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = products.map(p=>`
+    <div class="product-card" onclick="location.href='detail.html?id=${p.id}'" style="cursor:pointer">
+      <img class="product-card-img" src="${p.image}" alt="${p.name}" onerror="this.src=''"/>
+      <div class="product-card-name">${p.name}</div>
+      <div class="product-card-price">Rp ${p.price.toLocaleString('id-ID')} / 500 ${p.unit}</div>
+      <button class="product-card-btn" onclick="event.stopPropagation();addToCart('${p.id}')">Tambahkan</button>
+    </div>
+  `).join('');
+}
+
+function doSearch(){
+  const q = document.getElementById('searchInput').value.trim();
+  if(q) showToast(`Mencari: "${q}"`);
+}
+document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key==='Enter') doSearch(); });
+
+renderProducts();
+lucide.createIcons();
+</script>
+</body>
+</html>
