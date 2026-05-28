@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Status Pesanan</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #F6F3EE;
+            color: #111;
+        }
+
+        /* =========================
+       CONTAINER
+    ========================== */
+
+        .container-status {
+            max-width: 1440px;
+            margin: auto;
+            padding: 28px 20px 40px;
+        }
+
+        .title {
+            font-size: 54px;
+            font-weight: 700;
+            color: #2E5A09;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #222;
+            margin-bottom: 34px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2.1fr 0.95fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .card {
+            background: #F6F3EE;
+            border: 1.5px solid #7DA25B;
+            border-radius: 22px;
+        }
+
+        /* =========================
+       ORDER HEADER
+    ========================== */
+
+        .order-header {
+            padding: 26px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 180px;
+        }
+
+        .order-left {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .order-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 18px;
+            background: #3D7B12;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .order-icon i {
+            width: 42px;
+            height: 42px;
+            color: white;
+        }
+
+        .order-info h2 {
+            font-size: 27px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .order-info p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .order-right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .back-btn {
+            padding: 12px 22px;
+            border: 1.5px solid #A5A100;
+            border-radius: 12px;
+            background: transparent;
+            color: #8B8600;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+        }
+
+        .back-btn:hover {
+            background: #E8E09A;
+            color: #6F6900;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .payment-text {
+            font-size: 18px;
+            color: #222;
+        }
+
+        .payment-total {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4D9623;
+        }
+
+        /* =========================
+       TRACKING
+    ========================== */
+
+        .tracking-card {
+            padding: 34px 34px 40px;
+            margin-top: 20px;
+        }
+
+        .tracking-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 38px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            min-height: 142px;
+        }
+
+        .timeline-item:last-child {
+            min-height: auto;
+        }
+
+        .timeline-icon-wrapper {
+            position: relative;
+            width: 74px;
+            display: flex;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 74px;
+            width: 3px;
+            height: 82px;
+            background: #CFCFCF;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item.completed .timeline-line {
+            background: #4B8E19;
+        }
+
+        .timeline-item:last-child .timeline-line {
+            display: none;
+        }
+
+        .timeline-icon {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .timeline-icon i {
+            width: 34px;
+            height: 34px;
+        }
+
+        .completed .timeline-icon {
+            background: #4B8E19;
+            color: white;
+        }
+
+        .pending .timeline-icon {
+            border: 2px solid #6EA12D;
+            color: #4B8E19;
+            background: #F6F3EE;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-top: 6px;
+        }
+
+        .timeline-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            font-size: 17px;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content span {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: #DDF0C7;
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .farmer-img {
+            width: 125px;
+            object-fit: contain;
+            margin-left: 18px;
+            flex-shrink: 0;
+        }
+
+        /* =========================
+       HELP CARD
+    ========================== */
+
+        .help-card {
+            margin-top: 20px;
+            background: #DDF0C7;
+            border-radius: 18px;
+            padding: 22px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .help-left {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .help-image {
+            width: 125px;
+            object-fit: contain;
+        }
+
+        .help-text h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .help-text p {
+            font-size: 17px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .help-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .help-btn {
+            width: 285px;
+            height: 56px;
+            border-radius: 14px;
+            border: 1.5px solid #9DA02B;
+            background: #F6F3EE;
+            color: #8B8600;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        /* =========================
+       SIDEBAR
+    ========================== */
+
+        .sidebar-card {
+            padding: 28px 26px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 28px;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .product-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .product-left img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .product-detail {
+            font-size: 15px;
+            color: #444;
+        }
+
+        .product-price {
+            font-size: 17px;
+            color: #333;
+        }
+
+        .divider {
+            height: 1.5px;
+            background: #A9C48A;
+            margin: 22px 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .grand-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .grand-total h2 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .grand-total span {
+            font-size: 22px;
+            font-weight: 700;
+            color: #4D9623;
+        }
+
+        /* =========================
+       INFO
+    ========================== */
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .info-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid #4B8E19;
+            color: #4B8E19;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-icon i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .info-content h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .info-content p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* =========================
+       PROMO
+    ========================== */
+
+        .promo-card {
+            background: #3D7B12;
+            border-radius: 18px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: white;
+        }
+
+        .promo-card img {
+            width: 92px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .promo-card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .promo-card p {
+            font-size: 13px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+     TOPBAR
+========================== -->
+
+    <nav class="w-full bg-[#E3C800] border-b border-[#d4bc00] sticky top-0 z-50">
+
+        <div class="max-w-[1440px] mx-auto px-8 py-5 flex items-center justify-between gap-8">
+
+            <!-- LOGO -->
+            <div class="flex items-center gap-3 shrink-0">
+
+                <!-- ICON -->
+                <div class="w-[56px] h-[56px] rounded-2xl flex items-center justify-center">
+
+                    <img src="img/logo.png" class="w-full h-full object-contain" />
+
+                </div>
+
+                <!-- TEXT -->
+                <img src="img/tekslogo.png" class="h-10 object-contain" />
+
+            </div>
+
+            <!-- SEARCH -->
+            <div class="flex-1 flex justify-center">
+
+                <div
+                    class="w-full max-w-[450px] h-[48px] bg-[#FFFDF7] rounded-full border border-[#8D8D8D] flex items-center pl-5 pr-1">
+
+                    <!-- INPUT -->
+                    <input id="searchInput" type="text" placeholder="Cari produk..."
+                        class="flex-1 bg-transparent outline-none text-sm px-3" />
+
+                    <!-- BUTTON -->
+                    <button
+                        class="bg-[#2E5A09] hover:bg-[#FFFDF7] transition-all text-white text-sm font-medium px-8 h-[40px] rounded-full">
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- ACTION -->
+            <div class="flex items-center gap-5 shrink-0">
+
+                <button
+                    class="w-[44px] h-[44px] rounded-full bg-[#2E5A09] flex items-center justify-center hover:scale-105 transition">
+
+                    <i data-lucide="package-2" class="w-5 h-5 text-white"></i>
+
+                </button>
+
+                <button
+                    class="w-[44px] h-[44px] rounded-full bg-[#2E5A09] flex items-center justify-center hover:scale-105 transition">
+
+                    <i data-lucide="shopping-cart" class="w-5 h-5 text-white"></i>
+
+                </button>
+
+                <img src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
+                    class="w-[44px] h-[44px] rounded-full object-cover" />
+                <div class="text-left">
+                    <p class="font-bold text-secondary">Kenny Shefa Dinarti</p>
+                    <p class="text-xs text-muted">Pembeli</p>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        lucide.createIcons();
+        function initSearch() {
+            const searchInput = document.getElementById("searchInput");
+            const productCards = document.querySelectorAll("[data-name]");
+
+            if (!searchInput) return;
+
+            function doSearch() {
+                const value = searchInput.value.toLowerCase();
+
+                productCards.forEach(card => {
+                    const name = card.getAttribute("data-name")?.toLowerCase() || "";
+                    card.style.display = name.includes(value) ? "" : "none";
+                });
+            }
+
+            searchInput.addEventListener("input", doSearch);
+        }
+    </script>
+    <!-- =========================
+     CONTENT
+========================== -->
+
+    <div class="container-status">
+
+        <h1 class="title">Status Pesanan</h1>
+
+        <p class="subtitle">
+            Pantau perjalanan pesanan produk segar langsung dari petani.
+        </p>
+
+        <div class="main-grid">
+
+            <!-- LEFT -->
+            <div>
+
+                <!-- ORDER HEADER -->
+                <div class="card order-header">
+
+                    <div class="order-left">
+
+                       <div class="order-icon">
+    <i data-lucide="shopping-bag" class="text-white"></i>
+</div>
+
+                        <div class="order-info">
+                            <h2>Pesanan #ABC123</h2>
+                            <p>Dipesan pada 25 Mei 2026, 09.15 WIB</p>
+                        </div>
+
+                    </div>
+
+                    <div class="order-right">
+
+                        <button class="back-btn" onclick="window.location.href='DaftarPesanan.html'">
+                            ← Kembali ke Daftar Pesanan
+                        </button>
+
+                        <div>
+                            <p class="payment-text">Total Pembayaran</p>
+                            <h2 class="payment-total">Rp. 62.000</h2>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- TRACKING -->
+                <div class="card tracking-card">
+
+                    <h2 class="tracking-title">
+                        Perjalanan Pesanan Anda
+                    </h2>
+
+                    <div class="timeline">
+
+                        <!-- ITEM 1 -->
+                        <div class="timeline-item completed">
+
+                            <div class="timeline-icon-wrapper">
+
+                                <div class="timeline-icon">
+                                    <i data-lucide="check"></i>
+                                </div>
+
+                                <div class="timeline-line"></div>
+
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>Pesanan diterima</h3>
+
+                                <p>
+                                    Pesanan Anda telah kami terima dan sedang diproses.
+                                </p>
+
+                                <span>25 Mei 2026, 09.15 WIB</span>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ITEM 2 -->
+                        <div class="timeline-item completed">
+
+                            <div class="timeline-icon-wrapper">
+
+                                <div class="timeline-icon">
+                                    <i data-lucide="package"></i>
+                                </div>
+
+                                <div class="timeline-line"></div>
+
+                            </div>
+
+                            <div class="highlight-box">
+
+                                <div class="timeline-content">
+
+                                    <h3>Sedang Disiapkan</h3>
+
+                                    <p>
+                                        Petani sedang menyiapkan produk segar pilihan terbaik untuk Anda.
+                                    </p>
+
+                                    <span>25 Mei 2026, 10.30 WIB</span>
+
+                                </div>
+
+                                <!-- GANTI DENGAN IMG SENDIRI -->
+                                <img src="petani kiri.png" class="farmer-img" />
+
+                            </div>
+
+                        </div>
+
+                        <!-- ITEM 3 -->
+                        <div class="timeline-item pending">
+
+                            <div class="timeline-icon-wrapper">
+
+                                <div class="timeline-icon">
+                                    <i data-lucide="truck"></i>
+                                </div>
+
+                                <div class="timeline-line"></div>
+
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>Dalam Pengiriman</h3>
+
+                                <p>
+                                    Pesanan sedang dalam perjalanan menuju alamat Anda.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ITEM 4 -->
+                        <div class="timeline-item pending">
+
+                            <div class="timeline-icon-wrapper">
+
+                                <div class="timeline-icon">
+                                    <i data-lucide="house"></i>
+                                </div>
+
+                            </div>
+
+                            <div class="timeline-content">
+
+                                <h3>Pesanan Sampai</h3>
+
+                                <p>
+                                    Pesanan telah diterima. Terima kasih atas kepercayaan Anda.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- HELP -->
+                <div class="help-card">
+
+                    <div class="help-left">
+
+                        <!-- GANTI DENGAN IMG SENDIRI -->
+                        <img src="Petani kanan.png" class="help-image" />
+
+                        <div class="help-text">
+
+                            <h2>Butuh Bantuan?</h2>
+
+                            <p>
+                                Kami siap membantu jika ada kendala
+                                <br>
+                                dengan pesanan Anda.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="help-actions">
+
+                        <button class="help-btn">
+                            <i data-lucide="message-square"></i>
+                            Chat dengan kami
+                        </button>
+
+                        <button class="help-btn">
+                            <i data-lucide="phone"></i>
+                            Hubungi 0895-1997-5516
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div>
+
+                <!-- RINGKASAN -->
+                <div class="card sidebar-card">
+
+                    <h2 class="sidebar-title">
+                        Ringkasan Pesanan
+                    </h2>
+
+                    <div class="product-item">
+
+                        <div class="product-left">
+
+                            <img src="wortel.png" />
+
+                            <div>
+                                <h3 class="product-name">Wortel</h3>
+                                <p class="product-detail">500 gram &nbsp;&nbsp; x1</p>
+                            </div>
+
+                        </div>
+
+                        <p class="product-price">Rp 12.000</p>
+
+                    </div>
+
+                    <div class="product-item">
+
+                        <div class="product-left">
+
+                            <img src="bawang.png" />
+
+                            <div>
+                                <h3 class="product-name">Bawang Merah</h3>
+                                <p class="product-detail">500 gram &nbsp;&nbsp; x1</p>
+                            </div>
+
+                        </div>
+
+                        <p class="product-price">Rp 18.000</p>
+
+                    </div>
+
+                    <div class="product-item">
+
+                        <div class="product-left">
+
+                            <img src="cabai.png" />
+
+                            <div>
+                                <h3 class="product-name">Cabai</h3>
+                                <p class="product-detail">500 gram &nbsp;&nbsp; x1</p>
+                            </div>
+
+                        </div>
+
+                        <p class="product-price">Rp 25.000</p>
+
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="summary-row">
+                        <p>Subtotal</p>
+                        <p>Rp 55.000</p>
+                    </div>
+
+                    <div class="summary-row">
+                        <p>Ongkos kirim</p>
+                        <p>Rp 12.000</p>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="grand-total">
+                        <h2>Total Pembayaran</h2>
+                        <span>Rp 62.000</span>
+                    </div>
+
+                </div>
+
+                <!-- INFO -->
+                <div class="card sidebar-card">
+
+                    <h2 class="sidebar-title">
+                        Informasi Pengiriman
+                    </h2>
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            <i data-lucide="user-round"></i>
+                        </div>
+
+                        <div class="info-content">
+                            <h3>Nama Penerima</h3>
+                            <p>Kenny Shefa Dinarti</p>
+                        </div>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+
+                        <div class="info-content">
+                            <h3>Alamat Pengiriman</h3>
+                            <p>Jl. Terusan Cikampek No.10.B</p>
+                        </div>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            <i data-lucide="truck"></i>
+                        </div>
+
+                        <div class="info-content">
+                            <h3>Metode Pengiriman</h3>
+                            <p>Kurir TaniKita</p>
+                        </div>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            <i data-lucide="clock-3"></i>
+                        </div>
+
+                        <div class="info-content">
+                            <h3>Estimasi Tiba</h3>
+                            <p>25 Mei 2026, 15.00–17.00 WIB</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- PROMO -->
+                <div class="promo-card">
+
+                    <!-- GANTI DENGAN IMG SENDIRI -->
+                    <img src="SayurBuah.png" />
+
+                    <div>
+
+                        <h2>Belanja Aneka Sayuran Segar!</h2>
+
+                        <p>
+                            Segar, Berkualitas, dan mendukung petani lokal
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+     SCRIPT
+========================== -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+
+        lucide.createIcons();
+
+        function initSearch() {
+
+            const searchInput = document.getElementById("searchInput");
+            const productCards = document.querySelectorAll("[data-name]");
+
+            if (!searchInput) return;
+
+            function doSearch() {
+
+                const value = searchInput.value.toLowerCase();
+
+                productCards.forEach(card => {
+
+                    const name = card.getAttribute("data-name")?.toLowerCase() || "";
+
+                    card.style.display = name.includes(value) ? "" : "none";
+
+                });
+
+            }
+
+            searchInput.addEventListener("input", doSearch);
+
+        }
+
+        initSearch();
+
+    </script>
+
+</body>
+
+</html>
