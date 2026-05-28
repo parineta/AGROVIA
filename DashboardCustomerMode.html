@@ -9,8 +9,240 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
 
+/* ================= NAVBAR ================= */
+
+.navbar{
+  width:100%;
+  background:#E3C800;
+  border-bottom:1px solid #d4bc00;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+.navbar-container{
+  width:100%;
+  max-width:1440px;
+  margin:auto;
+  padding:20px 32px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px;
+}
+
+/* ================= LOGO ================= */
+
+.logo-section{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-shrink:0;
+}
+
+.logo-icon{
+  width:56px;
+  height:56px;
+  border-radius:18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.logo-icon img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.logo-text{
+  height:40px;
+  object-fit:contain;
+}
+
+/* ================= SEARCH ================= */
+
+.search-wrapper{
+  flex:1;
+  display:flex;
+  justify-content:center;
+}
+
+.search-box{
+  width:100%;
+  max-width:450px;
+  height:48px;
+
+  background:#f7f8f5;
+  border:1px solid #8D8D8D;
+  border-radius:999px;
+
+  display:flex;
+  align-items:center;
+
+  padding-left:20px;
+  padding-right:4px;
+}
+
+.search-box input{
+  flex:1;
+  border:none;
+  outline:none;
+  background:transparent;
+
+  font-size:14px;
+  color:#4A4A4A;
+}
+
+.search-box input::placeholder{
+  color:#4A4A4A;
+}
+
+.search-box button{
+  height:40px;
+  padding:0 32px;
+
+  border:none;
+  border-radius:999px;
+
+  background:#2E5A09;
+  color:white;
+
+  font-size:14px;
+  font-weight:500;
+
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.search-box button:hover{
+  background:#244807;
+}
+
+/* ================= ACTION ================= */
+
+.action-section{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  flex-shrink:0;
+}
+
+.icon-btn{
+  width:44px;
+  height:44px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#2E5A09;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.icon-btn i{
+  width:20px;
+  height:20px;
+  color:#f7f8f5;
+}
+
+.icon-btn:hover{
+  transform:scale(1.05);
+}
+
+.login-btn{
+  height:44px;
+  padding:0 32px;
+
+  border-radius:12px;
+  border:1px solid #7A9660;
+
+  background:#f7f8f5;
+  color:#4E7B2B;
+
+  font-weight:500;
+
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.login-btn:hover{
+  background:#dfe7ca;
+}
+
+.register-btn{
+  height:44px;
+  padding:0 32px;
+
+  border:none;
+  border-radius:12px;
+
+  background:#2E5A09;
+  color:white;
+
+  font-weight:500;
+
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.register-btn:hover{
+  background:#244807;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1024px){
+
+  .navbar-container{
+    flex-wrap:wrap;
+  }
+
+  .search-wrapper{
+    order:3;
+    width:100%;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .navbar-container{
+    padding:16px;
+    gap:16px;
+  }
+
+  .action-section{
+    gap:10px;
+  }
+
+  .login-btn,
+  .register-btn{
+    padding:0 20px;
+    font-size:14px;
+  }
+
+  .search-box{
+    max-width:100%;
+  }
+
+}
 *{
     margin:0;
     padding:0;
@@ -19,99 +251,13 @@
 }
 
 body{
-    background:black;
-    display:flex;
-    justify-content:center;
-    padding:20px;
+    background:#f7f8f5;
 }
 
 .container{
-    width:1365px;
-    background:#f3f1eb;
-    border:3px solid #3b8cff;
-}
-
-/* ================= NAVBAR ================= */
-
-.navbar{
-    background:#e0c200;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:14px 22px;
-}
-
-.logo{
-    font-size:38px;
-    font-weight:700;
-    color:#2d7a1f;
-}
-
-.logo span{
-    color:#95bc00;
-}
-
-.search-box{
-    width:520px;
-    height:42px;
-    background:white;
-    border-radius:30px;
-    display:flex;
-    align-items:center;
-    padding:0 8px 0 18px;
-}
-
-.search-box input{
-    flex:1;
-    border:none;
-    outline:none;
-    font-size:14px;
-}
-
-.search-box button{
-    width:95px;
-    height:32px;
-    border:none;
-    border-radius:20px;
-    background:#275c12;
-    color:white;
-    cursor:pointer;
-}
-
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.icon-circle{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#275c12;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    font-size:16px;
-}
-
-.btn-login{
-    padding:10px 18px;
-    border:none;
-    border-radius:10px;
-    background:#f5f0de;
-    color:#275c12;
-    cursor:pointer;
-}
-
-.btn-register{
-    padding:10px 18px;
-    border:none;
-    border-radius:10px;
-    background:#275c12;
-    color:white;
-    cursor:pointer;
+    width:100%;
+    min-height:100vh;
+    background:#f7f8f5;
 }
 
 /* ================= HERO ================= */
@@ -146,14 +292,18 @@ body{
     margin-top:55px;
 }
 
-.info-item{
-    color:white;
-    font-size:14px;
+.info-item {
+    color: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .hero-right img{
     width:500px;
     object-fit:contain;
+    display:block;
 }
 
 /* ================= PROMO ================= */
@@ -273,12 +423,16 @@ body{
     gap:15px;
 }
 
-.product-card{
-    width:205px; /* Sedikit disesuaikan agar pas membagi space container */
-    background:#f8f8ee;
-    border:1px solid #bdb76b;
-    border-radius:16px;
-    padding:16px;
+.product-card {
+    flex: 1 1 calc(20% - 15px);
+    max-width: calc(20% - 12px); 
+    background: #f8f8ee;
+    border: 1px solid #bdb76b;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-card img{
@@ -321,8 +475,6 @@ body{
     background:#f8f8f8;
 }
 
-/* ================= FOOTER ================= */
-
 .footer{
     border-top:1px solid #ddd;
     padding:28px 18px;
@@ -350,8 +502,8 @@ body{
     color:#666;
     font-size:14px;
 }
-
 </style>
+
 </head>
 
 <body>
@@ -360,31 +512,69 @@ body{
 
     <nav class="navbar">
 
-        <div class="logo">
-            agro<span>via</span>
-        </div>
+  <div class="navbar-container">
 
-        <div class="search-box">
+    <!-- LOGO -->
+    <div class="logo-section">
 
-            <input type="text" placeholder="Search">
+      <div class="logo-icon">
+        <img src="img/logo.png" alt="Logo">
+      </div>
 
-            <button>Search</button>
+      <img
+        src="img/tekslogo.png"
+        class="logo-text"
+        alt="Agrovia"
+      >
 
-        </div>
+    </div>
 
-        <div class="nav-right">
+    <!-- SEARCH -->
+    <div class="search-wrapper">
 
-            <div class="icon-circle">⌂</div>
+      <div class="search-box">
 
-            <div class="icon-circle">🛒</div>
+        <input
+          type="text"
+          placeholder="Search"
+        >
 
-            <button class="btn-login">Masuk</button>
+        <button>
+          Search
+        </button>
 
-            <button class="btn-register">Daftar</button>
+      </div>
 
-        </div>
+    </div>
 
-    </nav>
+    <!-- ACTION -->
+    <div class="action-section">
+
+      <!-- BOX -->
+      <button class="icon-btn">
+        <i data-lucide="package-2"></i>
+      </button>
+
+      <!-- CART -->
+      <button class="icon-btn">
+        <i data-lucide="shopping-cart"></i>
+      </button>
+
+      <!-- LOGIN -->
+      <button class="login-btn">
+        Masuk
+      </button>
+
+      <!-- REGISTER -->
+      <button class="register-btn">
+        Daftar
+      </button>
+
+    </div>
+
+  </div>
+
+</nav>
 
     <section class="hero">
 
@@ -398,27 +588,30 @@ body{
                 Lebih Mudah & Sehat
             </h1>
 
-            <div class="hero-info">
+        <div class="hero-info">
 
-                <div class="info-item">
-                    🛡️ Kualitas Terjamin
-                </div>
-
-                <div class="info-item">
-                    🚚 Pengiriman Cepat
-                </div>
-
-                <div class="info-item">
-                    🏠 Harga Terbaik
-                </div>
-
+            <div class="info-item">
+                <i data-lucide="shield-check"></i>
+                <span>Kualitas Terjamin</span>
             </div>
+
+            <div class="info-item">
+                <i data-lucide="truck"></i>
+                <span>Pengiriman Cepat</span>
+            </div>
+
+            <div class="info-item">
+                <i data-lucide="badge-dollar-sign"></i>
+                <span>Harga Terbaik</span>
+            </div>
+
+        </div>
 
         </div>
 
         <div class="hero-right">
 
-            <img src="c:\Users\user\Downloads\download (14).jpg"> 
+            <img src="https://static.vecteezy.com/system/resources/previews/025/277/368/original/vegetables-basket-png.png"> 
 
         </div>
 
@@ -440,7 +633,7 @@ body{
 
                 <div class="promo-image">
 
-                    <img src="UAP3/image/promo1.png">
+                    <img src="https://webstockreview.net/images/grapes-clipart-buah-buahan-16.png">
 
                 </div>
 
@@ -463,7 +656,7 @@ body{
 
                 <div class="promo-image">
 
-                    <img src="UAP3/image/promo2.png">
+                    <img src="https://png.pngtree.com/png-clipart/20230310/ourmid/pngtree-fresh-fruit-png-image_6642661.png">
 
                 </div>
 
@@ -508,7 +701,7 @@ body{
 
             <div class="product-card">
 
-                <img src="UAP3/image/buncis.png">
+                <img src="https://www.bibitbenih.com/wp-content/uploads/2023/05/budidaya-buncis-1024x976.jpg">
 
                 <h4>Buncis</h4>
 
@@ -520,7 +713,7 @@ body{
 
             <div class="product-card">
 
-                <img src="UAP3/image/cabaimerah.png">
+                <img src="https://unair.ac.id/wp-content/uploads/2021/10/Foto-oleh-The-Sport-Review.jpg">
 
                 <h4>Cabai Merah</h4>
 
@@ -532,7 +725,7 @@ body{
 
             <div class="product-card">
 
-                <img src="UAP3/image/bawangmerah.png">
+                <img src="https://png.pngtree.com/png-vector/20240204/ourmid/pngtree-red-fresh-onion-png-image_11540411.png">
 
                 <h4>Bawang Merah</h4>
 
@@ -544,7 +737,7 @@ body{
 
             <div class="product-card">
 
-                <img src="UAP3/image/wortel.png">
+                <img src="https://static.vecteezy.com/system/resources/previews/029/711/821/original/carrot-transparent-background-png.png">
 
                 <h4>Wortel</h4>
 
@@ -556,7 +749,7 @@ body{
 
             <div class="product-card">
 
-                <img src="UAP3/image/bawangputih.png">
+                <img src="https://png.pngtree.com/png-clipart/20230927/original/pngtree-garlic-isolated-background-png-image_13000880.png">
 
                 <h4>Bawang Putih</h4>
 
@@ -568,7 +761,7 @@ body{
 
             <div class="product-card">
 
-                <img src="UAP3/image/tomat.png">
+                <img src="https://static.vecteezy.com/system/resources/previews/029/720/519/large_2x/tomato-transparent-background-png.png">
 
                 <h4>Tomat</h4>
 
@@ -619,5 +812,8 @@ body{
 
 </div>
 
+<script>
+    lucide.createIcons();
+</script>
 </body>
 </html>
