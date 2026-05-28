@@ -5,7 +5,12 @@ function register() {
   let role = document.getElementById("role").value;
 
   // Validasi sederhana
-  if (nama === "" || email === "" || password === "") {
+  if (
+    nama === "" ||
+    email === "" ||
+    password === "" ||
+    role === "Pilih peran anda"
+  ) {
     alert("Semua data harus diisi!");
     return;
   }

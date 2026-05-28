@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div class="bg-[#fffdf7] w-full min-h-screen flex overflow-hidden">
+  <div class="bg-[#fffdf7] w-full min-h-screen flex">
 
     <!-- KIRI (GAMBAR + LOGO) -->
     <div class="hidden md:block md:w-1/2 h-screen relative">
@@ -28,7 +28,7 @@
     </div>
 
     <!-- KANAN (FORM) -->
-    <div class="w-full md:w-1/2 flex flex-col items-center justify-center px-6">
+    <div class="w-full md:w-1/2 flex flex-col items-center justify-center px-6 py-10">
 
       <!-- CONTAINER FORM -->
       <div class="w-full max-w-[500px] flex flex-col gap-6">
@@ -61,17 +61,16 @@
           </div>
 
           <div>
-  <label>Pilih Peran</label>
-  <div class="relative">
-    <select id="role" class="w-full h-14 p-4 pr-12 border rounded-[10px]">
-      <option>Pilih peran anda</option>
-      <option>Penjual</option>
-      <option>Pembeli</option>
-    </select>
-      </svg>
-    </div>
-  </div>
-</div>
+            <label>Pilih Peran</label>
+
+            <div class="relative">
+              <select id="role" class="w-full h-14 p-4 pr-12 border rounded-[10px]">
+                <option>Pilih peran anda</option>
+                <option>Penjual</option>
+                <option>Pembeli</option>
+              </select>
+            </div>
+          </div>
 
         <!-- BUTTON -->
         <button onclick="register()" class="w-full h-14 bg-green-600 text-white rounded-[30px]">
@@ -86,20 +85,22 @@
         </div>
 
         <!-- GOOGLE -->
-        <div class="flex items-center justify-center gap-3 border rounded-[30px] h-14">
-          <img src="google.png" class="w-5 h-5"/>
-          <span>Continue with Google</span>
-        </div>
+          <button class="flex items-center justify-center gap-3 border rounded-full h-14">
+            <img src="https://static.dezeen.com/uploads/2025/05/sq-google-g-logo-update_dezeen_2364_col_0.jpg" class="w-5">
+            Continue with Google
+          </button>
 
-        <!-- FOOTER -->
-        <p class="text-center">
-          Sudah punya Akun?
-          <span class="text-green-700 cursor-pointer">Masuk!</span>
-        </p>
+
+        <span 
+          onclick="window.location.href='login.html'"
+          class="text-green-700 cursor-pointer block text-center"
+        >
+          Sudah punya akun? Masuk!
+        </span>
 
       </div>
     </div>
   </div>
-  <script src="register.js"></script>
+  <script src="js/register.js"></script>
 </body>
 </html>
