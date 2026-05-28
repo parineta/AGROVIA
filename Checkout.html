@@ -650,9 +650,9 @@
     let cart = JSON.parse(localStorage.getItem('agrovia_cart') || '[]');
     if (cart.length === 0) {
       cart = [
-        { ...products[3], qty: 1, selectedWeight: 500 },
-        { ...products[2], qty: 1, selectedWeight: 500 },
-        { ...products[1], qty: 1, selectedWeight: 500 }
+        { ...products[3], qty: 1},
+        { ...products[2], qty: 1},
+        { ...products[1], qty: 1}
       ];
     }
 
@@ -667,7 +667,7 @@
             <img src="${item.image}" alt="${item.name}" onerror="this.src=''" />
             <div class="order-item-info">
               <div class="order-item-name">${item.name}</div>
-              <div class="order-item-meta">${item.selectedWeight || 500} ${item.unit} &nbsp; x${item.qty}</div>
+              <div class="order-item-meta">${item.qty} Kg</div>
             </div>
             <div class="order-item-price">Rp ${sub.toLocaleString('id-ID')}</div>
           </div>`;
