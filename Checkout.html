@@ -694,15 +694,6 @@
       card.classList.add('active');
     });
 
-    function handleBayar() {
-      const slot = document.querySelector('.slot-card.active');
-      const pay = document.querySelector('.pay-card.active');
-      const note = document.getElementById('noteArea').value.trim();
-      const slotInfo = slot ? slot.querySelector('.slot-day').textContent + ' ' + slot.querySelector('.slot-time').textContent : '-';
-      const payInfo = pay ? pay.querySelector('.pay-name').textContent : '-';
-      alert(`✅ Pesanan dikonfirmasi!\n\n📦 Pengiriman: ${slotInfo}\n💳 Pembayaran: ${payInfo}\n📝 Catatan: ${note || '(tidak ada)'}\n💰 Total: ${document.getElementById('bottomTotal').textContent}`);
-    }
-
     renderOrder();
     lucide.createIcons();
   </script>
