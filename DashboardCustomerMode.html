@@ -328,50 +328,13 @@
     });
 
   }
+const navbarAction = document.getElementById("navbarAction");
+const isLogin = localStorage.getItem("isLogin");
 
-  const navbarAction = document.getElementById("navbarAction");
+if(isLogin === "true"){
 
-  const isLogin = localStorage.getItem("isLogin");
-
-  if(isLogin === "true"){
-
-    const username = localStorage.getItem("username") || "User";
-    const role = localStorage.getItem("role") || "Pembeli";
-
-    navbarAction.innerHTML = `
-    
-      <!-- BOX -->
-      <button class="icon-btn" onclick="window.location.href='DaftarPesanan.html'">
-        <i data-lucide="package-2"></i>
-      </button>
-
-      <!-- CART -->
-      <button class="icon-btn">
-        <i data-lucide="shopping-cart"></i>
-      </button>
-
-      <!-- PROFILE -->
-      <div class="profile-section">
-
-        <img 
-          src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
-          class="profile-img"
-        >
-
-        <div class="profile-info">
-          <p class="profile-name">${username}</p>
-          <p class="profile-role">${role}</p>
-        </div>
-
-      </div>
-
-      <!-- LOGOUT -->
-      <button class="login-btn" onclick="logout()">
-        Logout
-      </button>
-    `;
-
- } else {
+  const username = localStorage.getItem("username") || "User";
+  const role = localStorage.getItem("role") || "Pembeli";
 
   navbarAction.innerHTML = `
   
@@ -380,17 +343,65 @@
       <i data-lucide="package-2"></i>
     </button>
 
+    <!-- CART -->
+    <button 
+      class="icon-btn"
+      onclick="window.location.href='Cart.html'"
+    >
+      <i data-lucide="shopping-cart"></i>
+    </button>
+
+    <!-- PROFILE -->
+    <div class="profile-section">
+
+      <img 
+        src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
+        class="profile-img"
+      >
+
+      <div class="profile-info">
+        <p class="profile-name">${username}</p>
+        <p class="profile-role">${role}</p>
+      </div>
+
+    </div>
+
+    <!-- LOGOUT -->
+    <button class="login-btn" onclick="logout()">
+      Logout
+    </button>
+  `;
+
+} else {
+
+  navbarAction.innerHTML = `
+  
+    <!-- CART -->
+    <button 
+      class="icon-btn"
+      onclick="window.location.href='Cart.html'"
+    >
+      <i data-lucide="shopping-cart"></i>
+    </button>
+
     <!-- LOGIN -->
-    <button class="login-btn" onclick="window.location.href='login.html'">
+    <button 
+      class="login-btn"
+      onclick="window.location.href='login.html'"
+    >
       Masuk
     </button>
 
     <!-- REGISTER -->
-    <button class="register-btn" onclick="window.location.href='register.html'">
+    <button 
+      class="register-btn"
+      onclick="window.location.href='register.html'"
+    >
       Daftar
     </button>
   `;
 }
+
   function logout(){
 
     localStorage.removeItem("isLogin");

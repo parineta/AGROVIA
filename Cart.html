@@ -179,7 +179,7 @@
     .nav-daftar:hover {
       background: #244807;
     }
-    
+
     .profile-section{
       display:flex;
       align-items:center;
@@ -703,7 +703,7 @@
             <div class="empty-cart"><i data-lucide="shopping-cart"></i><p>Keranjang kosong</p></div>
           </div>
           <div class="cart-footer">
-            <button class="btn-back" onclick="location.href='index.html'"><i data-lucide="arrow-left" style="width:14px;height:14px"></i> Lanjut Belanja</button>
+            <button class="btn-back" onclick="location.href='DashboardCustomerMode.html'"><i data-lucide="arrow-left" style="width:14px;height:14px"></i> Lanjut Belanja</button>
             <button class="btn-hapus" onclick="clearCart()"><i data-lucide="trash-2"></i> Hapus Semua</button>
           </div>
         </div>
@@ -716,7 +716,10 @@
           <div class="summary-row"><span id="subtotalLabel">Subtotal 0 item</span><span id="subtotalVal">Rp 0</span></div>
           <hr class="summary-divider" />
           <div class="summary-total"><span>Total</span><span class="amount" id="totalVal">Rp 0</span></div>
-          <button class="btn-checkout" onclick="location.href='checkout.html'"><i data-lucide="shopping-bag"></i> Checkout Sekarang</button>
+          <button class="btn-checkout" onclick="handleCheckout()">
+            <i data-lucide="shopping-bag"></i>
+            Checkout Sekarang
+          </button>
         </div>
         <div class="features-card">
           <div class="feat-item"><i data-lucide="truck"></i> Pengiriman Cepat</div>
@@ -752,12 +755,12 @@
 
   <script>
     const products = [
-      { id: "buncis", name: "Buncis", price: 10000, unit: "gram", image: "buncis.png" },
-      { id: "cabai-merah", name: "Cabai Merah", price: 25000, unit: "kg", image: "cb mrh.png" },
-      { id: "bawang-merah", name: "Bawang Merah", price: 18000, unit: "kg", image: "bwg mrh.png" },
-      { id: "wortel", name: "Wortel", price: 12000, unit: "kg", image: "wortel.png" },
-      { id: "bawang-putih", name: "Bawang Putih", price: 28000, unit: "kg", image: "bwg pth.png" },
-      { id: "tomat", name: "Tomat", price: 15000, unit: "kg", image: "tomat.png" }
+      { id: "buncis", name: "Buncis", price: 10000, unit: "gram", image: "img/buncis.png" },
+      { id: "cabai-merah", name: "Cabai Merah", price: 25000, unit: "kg", image: "img/cb mrh.png" },
+      { id: "bawang-merah", name: "Bawang Merah", price: 18000, unit: "kg", image: "img/bwg mrh.png" },
+      { id: "wortel", name: "Wortel", price: 12000, unit: "kg", image: "img/wortel.png" },
+      { id: "bawang-putih", name: "Bawang Putih", price: 28000, unit: "kg", image: "img/bwg pth.png" },
+      { id: "tomat", name: "Tomat", price: 15000, unit: "kg", image: "img/tomat.png" }
     ];
 
     let cart = JSON.parse(localStorage.getItem('agrovia_cart') || '[]');
@@ -796,7 +799,23 @@
       saveCart();
       renderCart();
     }
+    
+    function handleCheckout(){
 
+      const isLogin = localStorage.getItem("isLogin");
+
+      if(isLogin === "true"){
+
+        window.location.href = "checkout.html";
+
+      } else {
+
+        alert("Silakan login terlebih dahulu!");
+
+        window.location.href = "login.html";
+      }
+
+    }
     function renderCart() {
       const el = document.getElementById('cartItems');
       if (cart.length === 0) {
@@ -853,7 +872,7 @@
         class="nav-icon-btn"
         onclick="window.location.href='DaftarPesanan.html'"
       >
-        <i data-lucide="package-2"></i>
+        <i data-lucide="shopping-cart"></i>
       </button>
 
       <!-- CART -->
@@ -887,33 +906,33 @@
 
   } else {
 
-    navbarAction.innerHTML = `
-    
-      <!-- BOX -->
-      <button 
-        class="nav-icon-btn"
-        onclick="window.location.href='DaftarPesanan.html'"
-      >
-        <i data-lucide="package-2"></i>
-      </button>
+  navbarAction.innerHTML = `
+  
+    <!-- CART -->
+    <button 
+      class="nav-icon-btn"
+      onclick="window.location.href='cart.html'"
+    >
+      <i data-lucide="shopping-cart"></i>
+    </button>
 
-      <!-- LOGIN -->
-      <button 
-        class="nav-masuk"
-        onclick="window.location.href='login.html'"
-      >
-        Masuk
-      </button>
+    <!-- LOGIN -->
+    <button 
+      class="nav-masuk"
+      onclick="window.location.href='login.html'"
+    >
+      Masuk
+    </button>
 
-      <!-- REGISTER -->
-      <button 
-        class="nav-daftar"
-        onclick="window.location.href='register.html'"
-      >
-        Daftar
-      </button>
-    `;
-  }
+    <!-- REGISTER -->
+    <button 
+      class="nav-daftar"
+      onclick="window.location.href='register.html'"
+    >
+      Daftar
+    </button>
+  `;
+}
 
   function logout(){
 
