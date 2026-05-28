@@ -48,17 +48,19 @@
     <!-- ACTION -->
     <div class="flex items-center gap-5 shrink-0">
         
-        <button class="w-[44px] h-[44px] rounded-full bg-[#2E5A09] flex items-center justify-center hover:scale-105 transition">
+        <button 
+          onclick="window.location.href='DaftarPesanan.html'"
+          class="w-[44px] h-[44px] rounded-full bg-[#2E5A09] flex items-center justify-center hover:scale-105 transition"
+        >
+          <i data-lucide="package-2" class="w-5 h-5 text-white"></i>
+        </button>
 
-        <i data-lucide="package-2" class="w-5 h-5 text-white"></i>
-
-      </button>
-      
-      <button class="w-[44px] h-[44px] rounded-full bg-[#2E5A09] flex items-center justify-center hover:scale-105 transition">
-
-        <i data-lucide="shopping-cart" class="w-5 h-5 text-white"></i>
-
-      </button>
+        <button 
+          onclick="window.location.href='Cart.html'"
+          class="w-[44px] h-[44px] rounded-full bg-[#2E5A09] flex items-center justify-center hover:scale-105 transition"
+        >
+          <i data-lucide="shopping-cart" class="w-5 h-5 text-white"></i>
+        </button>
 
       <img 
           src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
@@ -81,6 +83,39 @@
 
 <script>
   lucide.createIcons();
+
+  lucide.createIcons();
+
+  function initSearch() {
+
+    const searchInput = document.getElementById("searchInput");
+    const productCards = document.querySelectorAll("[data-name]");
+
+    if (!searchInput) return;
+
+    function doSearch() {
+
+      const value = searchInput.value.toLowerCase();
+
+      productCards.forEach(card => {
+
+        const name =
+          card.getAttribute("data-name")?.toLowerCase() || "";
+
+        card.style.display =
+          name.includes(value) ? "" : "none";
+
+      });
+
+    }
+
+    searchInput.addEventListener("input", doSearch);
+
+  }
+
+  // JALANKAN SEARCH
+  initSearch();
+
     function initSearch() {
     const searchInput = document.getElementById("searchInput");
     const productCards = document.querySelectorAll("[data-name]");

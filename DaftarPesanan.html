@@ -165,7 +165,7 @@
         .container {
             max-width: 1440px;
             margin: auto;
-            padding: 34px 20px 50px;
+            padding: 130px 20px 50px;
         }
 
         .page-header {
@@ -272,21 +272,29 @@
 
         .order-card {
             border: 1.5px solid #6EA12D;
-            border-radius: 18px;
-            padding: 28px 26px;
-            background: #F6F3EE;
+            border-radius: 22px;
+            padding: 26px 30px;
+            background: #FFFDF7;
             margin-bottom: 24px;
 
             display: grid;
-            grid-template-columns: 320px 1fr 280px 220px;
+            grid-template-columns: 1.2fr 1fr 0.9fr auto;
             align-items: center;
-            column-gap: 24px;
+            gap: 28px;
+
+            transition: all .25s ease;
+        }
+
+        .order-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.06);
         }
 
         .divider {
-            border-left: 1.5px solid #CFCFCF;
-            height: 112px;
-            padding-left: 26px;
+            border-left: 1.5px solid #E3E3E3;
+            min-height: 120px;
+            padding-left: 28px;
+
             display: flex;
             align-items: center;
         }
@@ -315,17 +323,23 @@
             margin-bottom: 18px;
         }
 
-        .products {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+    .products {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
 
-        .products img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-        }
+    .products img {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+
+        background: #fff;
+        border-radius: 14px;
+        padding: 6px;
+        border: 1px solid #EAEAEA;
+    }
 
         .more-badge {
             min-width: 140px;
@@ -396,13 +410,15 @@
         /* BUTTON DETAIL */
 
         .detail-btn {
-            width: 170px;
-            height: 58px;
+            width: 180px;
+            height: 56px;
             border-radius: 16px;
-            border: 1.5px solid #6EA12D;
-            background: transparent;
-            color: #417D12;
-            font-size: 17px;
+            border: none;
+
+            background: #2E5A09;
+            color: white;
+
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
 
@@ -411,12 +427,12 @@
             justify-content: center;
             gap: 8px;
 
-            white-space: nowrap;
-            transition: .25s;
+            transition: .25s ease;
         }
 
         .detail-btn:hover {
-            background: #EAF5DF;
+            background: #244807;
+            transform: scale(1.03);
         }
     </style>
 </head>
@@ -427,89 +443,22 @@
      TOPBAR
 ========================== -->
 
-   <nav class="w-full bg-[#E3C800] border-b border-[#d4bc00] sticky top-0 z-50">
-
-  <div class="max-w-[1440px] mx-auto px-8 py-5 flex items-center justify-between gap-8">
-
-    <!-- LOGO -->
-    <div class="flex items-center gap-3 shrink-0">
-
-      <!-- ICON -->
-      <div class="w-[56px] h-[56px] rounded-2xl flex items-center justify-center">
-
-        <img 
-          src="img/logo.png"
-          class="w-full h-full object-contain"
-        />
-
-      </div>
-
-      <!-- TEXT -->
-      <img
-        src="img/tekslogo.png"
-        class="h-10 object-contain"
-      />
-
-    </div>
-
-    <!-- SEARCH -->
-    <div class="flex-1 flex justify-center">
-
-      <div class="w-full max-w-[450px] h-[48px] bg-[#FFFDF7] rounded-full border border-[#8D8D8D] flex items-center pl-5 pr-1">
-
-        <!-- INPUT -->
-        <input
-        id="searchInput"
-        type="text"
-        placeholder="Cari produk..."
-        class="flex-1 bg-transparent outline-none text-sm px-3"
-        />
-
-        <!-- BUTTON -->
-        <button class="bg-[#2E5A09] hover:bg-[#FFFDF7] transition-all text-white text-sm font-medium px-8 h-[40px] rounded-full">
-          Search
-        </button>
-
-      </div>
-
-    </div>
-
-    <!-- ACTION -->
-    <div class="flex items-center gap-5 shrink-0">
-        
-        <button class="w-[44px] h-[44px] rounded-full bg-[#2E5A09] flex items-center justify-center hover:scale-105 transition">
-
-        <i data-lucide="package-2" class="w-5 h-5 text-white"></i>
-
-      </button>
-      
-      <button class="w-[44px] h-[44px] rounded-full bg-[#2E5A09] flex items-center justify-center hover:scale-105 transition">
-
-        <i data-lucide="shopping-cart" class="w-5 h-5 text-white"></i>
-
-      </button>
-
-      <img 
-          src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
-          class="w-[44px] h-[44px] rounded-full object-cover"
-        />
-      <div class="text-left">
-          <p class="font-bold text-secondary">Kenny Shefa Dinarti</p>
-          <p class="text-xs text-muted">Pembeli</p>
-        </div>
-
-      
-
-    </div>
-
-  </div>
-
-</nav>
+<div
+      id="navbarLoginMode-container"
+      class="fixed top-0 left-0 w-full z-50"
+></div>
 
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <script>
   lucide.createIcons();
+      fetch('component/navbarLoginMode.html')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById('navbarLoginMode-container').innerHTML = data;
+
+        lucide.createIcons(); 
+    });
     function initSearch() {
     const searchInput = document.getElementById("searchInput");
     const productCards = document.querySelectorAll("[data-name]");
@@ -614,9 +563,9 @@
                     <h3>Produk</h3>
 
                     <div class="products">
-                        <img src="wortel.png">
-                        <img src="bawang.png">
-                        <img src="cabai.png">
+                        <img src="img/wortel.png">
+                        <img src="img/bawang.png">
+                        <img src="img/cabai.png">
                     </div>
 
                 </div>
@@ -633,9 +582,12 @@
 
             </div>
 
-            <button class="detail-btn">
-                Lihat Detail →
-            </button>
+        <button 
+            class="detail-btn"
+            onclick="window.location.href='StatusPesanan.html'"
+        >
+            Lihat Detail →
+        </button>
 
         </div>
 
@@ -667,9 +619,9 @@
                     <h3>Produk</h3>
 
                     <div class="products">
-                        <img src="wortel.png">
-                        <img src="bawang.png">
-                        <img src="cabai.png">
+                        <img src="img/wortel.png">
+                        <img src="img/bawang.png">
+                        <img src="img/cabai.png">
 
                         <div class="more-badge">
                             +1 Lainnya
@@ -724,9 +676,9 @@
                     <h3>Produk</h3>
 
                     <div class="products">
-                        <img src="wortel.png">
-                        <img src="bawang.png">
-                        <img src="cabai.png">
+                        <img src="img/wortel.png">
+                        <img src="img/bawang.png">
+                        <img src="img/cabai.png">
 
                         <div class="more-badge">
                             +1 Lainnya
@@ -781,9 +733,9 @@
                     <h3>Produk</h3>
 
                     <div class="products">
-                        <img src="wortel.png">
-                        <img src="bawang.png">
-                        <img src="cabai.png">
+                        <img src="img/wortel.png">
+                        <img src="img/bawang.png">
+                        <img src="img/cabai.png">
 
                         <div class="more-badge">
                             +1 Lainnya
