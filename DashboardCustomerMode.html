@@ -6,503 +6,11 @@
 
 <title>Agrovia</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Plus Jakarta Sans',sans-serif;
-}
 
-/* ================= NAVBAR ================= */
-
-.navbar{
-  width:100%;
-  background:#E3C800;
-  border-bottom:1px solid #d4bc00;
-  position:sticky;
-  top:0;
-  z-index:999;
-}
-
-.navbar-container{
-  width:100%;
-  max-width:1440px;
-  margin:auto;
-  padding:20px 32px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:32px;
-}
-
-/* ================= LOGO ================= */
-
-.logo-section{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-shrink:0;
-}
-
-.logo-icon{
-  width:56px;
-  height:56px;
-  border-radius:18px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.logo-icon img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-
-.logo-text{
-  height:40px;
-  object-fit:contain;
-}
-
-/* ================= SEARCH ================= */
-
-.search-wrapper{
-  flex:1;
-  display:flex;
-  justify-content:center;
-}
-
-.search-box{
-  width:100%;
-  max-width:450px;
-  height:48px;
-
-  background:#f7f8f5;
-  border:1px solid #8D8D8D;
-  border-radius:999px;
-
-  display:flex;
-  align-items:center;
-
-  padding-left:20px;
-  padding-right:4px;
-}
-
-.search-box input{
-  flex:1;
-  border:none;
-  outline:none;
-  background:transparent;
-
-  font-size:14px;
-  color:#4A4A4A;
-}
-
-.search-box input::placeholder{
-  color:#4A4A4A;
-}
-
-.search-box button{
-  height:40px;
-  padding:0 32px;
-
-  border:none;
-  border-radius:999px;
-
-  background:#2E5A09;
-  color:white;
-
-  font-size:14px;
-  font-weight:500;
-
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.search-box button:hover{
-  background:#244807;
-}
-
-/* ================= ACTION ================= */
-
-.action-section{
-  display:flex;
-  align-items:center;
-  gap:20px;
-  flex-shrink:0;
-}
-
-.icon-btn{
-  width:44px;
-  height:44px;
-
-  border:none;
-  border-radius:50%;
-
-  background:#2E5A09;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.icon-btn i{
-  width:20px;
-  height:20px;
-  color:#f7f8f5;
-}
-
-.icon-btn:hover{
-  transform:scale(1.05);
-}
-
-.login-btn{
-  height:44px;
-  padding:0 32px;
-
-  border-radius:12px;
-  border:1px solid #7A9660;
-
-  background:#f7f8f5;
-  color:#4E7B2B;
-
-  font-weight:500;
-
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.login-btn:hover{
-  background:#dfe7ca;
-}
-
-.register-btn{
-  height:44px;
-  padding:0 32px;
-
-  border:none;
-  border-radius:12px;
-
-  background:#2E5A09;
-  color:white;
-
-  font-weight:500;
-
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.register-btn:hover{
-  background:#244807;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:1024px){
-
-  .navbar-container{
-    flex-wrap:wrap;
-  }
-
-  .search-wrapper{
-    order:3;
-    width:100%;
-  }
-
-}
-
-@media(max-width:768px){
-
-  .navbar-container{
-    padding:16px;
-    gap:16px;
-  }
-
-  .action-section{
-    gap:10px;
-  }
-
-  .login-btn,
-  .register-btn{
-    padding:0 20px;
-    font-size:14px;
-  }
-
-  .search-box{
-    max-width:100%;
-  }
-
-}
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
-
-body{
-    background:#f7f8f5;
-}
-
-.container{
-    width:100%;
-    min-height:100vh;
-    background:#f7f8f5;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    margin:18px;
-    background:#60a92d;
-    border-radius:16px;
-    padding:28px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    overflow:hidden;
-}
-
-.hero-left p{
-    color:white;
-    font-size:14px;
-    margin-bottom:18px;
-}
-
-.hero-left h1{
-    color:white;
-    font-size:52px;
-    line-height:1.2;
-    font-weight:700;
-}
-
-.hero-info{
-    display:flex;
-    gap:45px;
-    margin-top:55px;
-}
-
-.info-item {
-    color: white;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.hero-right img{
-    width:500px;
-    object-fit:contain;
-    display:block;
-}
-
-/* ================= PROMO ================= */
-
-.promo-section{
-    padding:0 18px;
-}
-
-.promo-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:14px;
-}
-
-.promo-header h2{
-    font-size:28px;
-    font-weight:600;
-}
-
-.promo-header a{
-    text-decoration:none;
-    color:#444;
-    font-size:13px;
-}
-
-.promo-wrapper{
-    display:flex;
-    gap:15px;
-}
-
-.promo-card{
-    flex:1;
-    background:#c8f2a6;
-    border-radius:14px;
-    height:175px;
-    display:flex;
-    align-items:center;
-    padding:18px;
-}
-
-.promo-image img{
-    width:190px;
-}
-
-.promo-content{
-    margin-left:10px;
-}
-
-.promo-content h3{
-    font-size:24px;
-    margin-bottom:10px;
-}
-
-.promo-content p{
-    font-size:12px;
-    color:#555;
-    line-height:1.5;
-}
-
-.promo-content button{
-    margin-top:14px;
-    width:130px;
-    height:36px;
-    border:none;
-    border-radius:8px;
-    background:#275c12;
-    color:white;
-    font-size:12px;
-}
-
-/* ================= FILTER ================= */
-
-.filter{
-    padding:38px 18px 20px;
-}
-
-.filter button{
-    width:130px;
-    height:48px;
-    border:none;
-    border-radius:10px;
-    background:#60a92d;
-    color:white;
-    font-size:18px;
-}
-
-/* ================= PRODUK ================= */
-
-.product-section{
-    padding:0 18px 30px;
-}
-
-.product-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.product-header h2{
-    font-size:28px;
-}
-
-.product-header select{
-    width:95px;
-    height:32px;
-    border-radius:20px;
-    border:1px solid #ccc;
-    padding:0 10px;
-    font-size:12px;
-}
-
-.product-wrapper{
-    display:flex;
-    flex-wrap: wrap; /* Diperbaiki agar card produk bisa rapi berjejer samping */
-    gap:15px;
-}
-
-.product-card {
-    flex: 1 1 calc(20% - 15px);
-    max-width: calc(20% - 12px); 
-    background: #f8f8ee;
-    border: 1px solid #bdb76b;
-    border-radius: 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.product-card img{
-    width:100%;
-    height:130px;
-    object-fit:contain;
-}
-
-.product-card h4{
-    margin-top:10px;
-    font-size:16px;
-}
-
-.product-card p{
-    margin-top:5px;
-    font-size:13px;
-    color:#555;
-}
-
-.product-card button{
-    width:100%;
-    height:42px;
-    border:none;
-    border-radius:25px;
-    background:#275c12;
-    color:white;
-    margin-top:14px;
-    font-weight:600;
-}
-
-.see-more{
-    text-align:center;
-    margin-top:25px;
-}
-
-.see-more button{
-    padding:10px 22px;
-    border:1px solid #aaa;
-    border-radius:8px;
-    background:#f8f8f8;
-}
-
-.footer{
-    border-top:1px solid #ddd;
-    padding:28px 18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.footer-left h3{
-    margin-bottom:8px;
-}
-
-.footer-left p{
-    color:#666;
-    font-size:14px;
-}
-
-.footer-right{
-    display:flex;
-    gap:24px;
-}
-
-.footer-right a{
-    text-decoration:none;
-    color:#666;
-    font-size:14px;
-}
-</style>
+<link rel="stylesheet" href="css/styleDashboardCustomer.css">
 
 </head>
 
@@ -550,29 +58,7 @@ body{
     </div>
 
     <!-- ACTION -->
-    <div class="action-section">
-
-      <!-- BOX -->
-      <button class="icon-btn" onclick="window.location.href='DaftarPesanan.html'">
-        <i data-lucide="package-2"></i>
-      </button>
-
-      <!-- CART -->
-      <button class="icon-btn">
-        <i data-lucide="shopping-cart"></i>
-      </button>
-
-      <!-- LOGIN -->
-      <button class="login-btn" onclick="window.location.href='login.html'">
-        Masuk
-      </button>
-
-      <!-- REGISTER -->
-      <button class="register-btn" onclick="window.location.href='register.html'">
-        Daftar
-      </button>
-
-    </div>
+    <div class="action-section" id="navbarAction"></div>
 
   </div>
 
@@ -815,34 +301,107 @@ body{
 </div>
 
 <script>
-    <script>
-    lucide.createIcons();
+  lucide.createIcons();
 
-    function searchProduct() {
+  function searchProduct() {
 
-        let input = document
-            .getElementById("searchInput")
-            .value
-            .toLowerCase();
+    let input = document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase();
 
-        let products = document.querySelectorAll(".product-card");
+    let products = document.querySelectorAll(".product-card");
 
-        products.forEach(function(product){
+    products.forEach(function(product){
 
-            let productName = product
-                .querySelector("h4")
-                .innerText
-                .toLowerCase();
+      let productName = product
+        .querySelector("h4")
+        .innerText
+        .toLowerCase();
 
-            if(productName.includes(input)){
-                product.style.display = "flex";
-            } else {
-                product.style.display = "none";
-            }
+      if(productName.includes(input)){
+        product.style.display = "flex";
+      } else {
+        product.style.display = "none";
+      }
 
-        });
+    });
 
-    }
+  }
+
+  const navbarAction = document.getElementById("navbarAction");
+
+  const isLogin = localStorage.getItem("isLogin");
+
+  if(isLogin === "true"){
+
+    const username = localStorage.getItem("username") || "User";
+    const role = localStorage.getItem("role") || "Pembeli";
+
+    navbarAction.innerHTML = `
+    
+      <!-- BOX -->
+      <button class="icon-btn" onclick="window.location.href='DaftarPesanan.html'">
+        <i data-lucide="package-2"></i>
+      </button>
+
+      <!-- CART -->
+      <button class="icon-btn">
+        <i data-lucide="shopping-cart"></i>
+      </button>
+
+      <!-- PROFILE -->
+      <div class="profile-section">
+
+        <img 
+          src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
+          class="profile-img"
+        >
+
+        <div class="profile-info">
+          <p class="profile-name">${username}</p>
+          <p class="profile-role">${role}</p>
+        </div>
+
+      </div>
+
+      <!-- LOGOUT -->
+      <button class="login-btn" onclick="logout()">
+        Logout
+      </button>
+    `;
+
+ } else {
+
+  navbarAction.innerHTML = `
+  
+    <!-- BOX -->
+    <button class="icon-btn" onclick="window.location.href='DaftarPesanan.html'">
+      <i data-lucide="package-2"></i>
+    </button>
+
+    <!-- LOGIN -->
+    <button class="login-btn" onclick="window.location.href='login.html'">
+      Masuk
+    </button>
+
+    <!-- REGISTER -->
+    <button class="register-btn" onclick="window.location.href='register.html'">
+      Daftar
+    </button>
+  `;
+}
+  function logout(){
+
+    localStorage.removeItem("isLogin");
+    localStorage.removeItem("username");
+    localStorage.removeItem("role");
+
+    window.location.reload();
+  }
+
+  // refresh icon lucide setelah innerHTML berubah
+  lucide.createIcons();
 </script>
 </body>
 </html>

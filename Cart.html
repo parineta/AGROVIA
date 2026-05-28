@@ -179,6 +179,34 @@
     .nav-daftar:hover {
       background: #244807;
     }
+    
+    .profile-section{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .profile-img{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+
+    .profile-info{
+      text-align:left;
+    }
+
+    .profile-name{
+      font-size:13px;
+      font-weight:700;
+      color:#222;
+    }
+
+    .profile-role{
+      font-size:11px;
+      color:#666;
+    }
 
     /* ── MAIN ── */
     .main {
@@ -644,8 +672,8 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <div class="nav-logo" onclick="location.href='index.html'">
-        <img src="logo.png" alt="" class="nav-logo-icon-img" />
-        <img src="tekslogo.png" alt="Agrovia" class="nav-logo-text-img" />
+        <img src="img/logo.png" alt="" class="nav-logo-icon-img" />
+        <img src="img/tekslogo.png" alt="Agrovia" class="nav-logo-text-img" />
       </div>
       <div class="nav-search">
         <div class="nav-search-box">
@@ -653,12 +681,7 @@
           <button class="nav-search-btn">Search</button>
         </div>
       </div>
-      <div class="nav-actions">
-        <button class="nav-icon-btn"><i data-lucide="package-2"></i></button>
-        <button class="nav-icon-btn"><i data-lucide="shopping-cart"></i></button>
-        <button class="nav-masuk">Masuk</button>
-        <button class="nav-daftar">Daftar</button>
-      </div>
+      <div class="nav-actions" id="navbarAction"></div>
     </div>
   </nav>
 
@@ -813,6 +836,94 @@
       document.getElementById('totalVal').textContent = 'Rp ' + subtotal.toLocaleString('id-ID');
       lucide.createIcons();
     }
+
+  const navbarAction = document.getElementById("navbarAction");
+
+  const isLogin = localStorage.getItem("isLogin");
+
+  if(isLogin === "true"){
+
+    const username = localStorage.getItem("username") || "User";
+    const role = localStorage.getItem("role") || "Pembeli";
+
+    navbarAction.innerHTML = `
+    
+      <!-- BOX -->
+      <button 
+        class="nav-icon-btn"
+        onclick="window.location.href='DaftarPesanan.html'"
+      >
+        <i data-lucide="package-2"></i>
+      </button>
+
+      <!-- CART -->
+      <button 
+        class="nav-icon-btn"
+        onclick="window.location.href='cart.html'"
+      >
+        <i data-lucide="shopping-cart"></i>
+      </button>
+
+      <!-- PROFILE -->
+      <div class="profile-section">
+
+        <img 
+          src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
+          class="profile-img"
+        >
+
+        <div class="profile-info">
+          <p class="profile-name">${username}</p>
+          <p class="profile-role">${role}</p>
+        </div>
+
+      </div>
+
+      <!-- LOGOUT -->
+      <button class="nav-masuk" onclick="logout()">
+        Logout
+      </button>
+    `;
+
+  } else {
+
+    navbarAction.innerHTML = `
+    
+      <!-- BOX -->
+      <button 
+        class="nav-icon-btn"
+        onclick="window.location.href='DaftarPesanan.html'"
+      >
+        <i data-lucide="package-2"></i>
+      </button>
+
+      <!-- LOGIN -->
+      <button 
+        class="nav-masuk"
+        onclick="window.location.href='login.html'"
+      >
+        Masuk
+      </button>
+
+      <!-- REGISTER -->
+      <button 
+        class="nav-daftar"
+        onclick="window.location.href='register.html'"
+      >
+        Daftar
+      </button>
+    `;
+  }
+
+  function logout(){
+
+    localStorage.removeItem("isLogin");
+    localStorage.removeItem("username");
+    localStorage.removeItem("role");
+
+    window.location.reload();
+  }
+
 
     function renderRecom() {
       const grid = document.getElementById('recomGrid');
