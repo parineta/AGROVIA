@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="register.css">
+  <link rel="stylesheet" href="styleregister.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="bg-[#fffdf7] w-full min-h-screen flex overflow-hidden">
+
+    <!-- KIRI (GAMBAR + LOGO) -->
+    <div class="hidden md:block md:w-1/2 h-screen relative">
+
+      <!-- BACKGROUND -->
+      <img src="Bg sayur.png" class="w-full h-full object-cover" />
+
+      <!-- LOGO DI ATAS -->
+      <div class="absolute top-6 left-6 flex items-center gap-3">
+        <img class="w-[70px]" src="logo 2.png" />
+        <img class="w-[260px]" src="logo 1 2.png" />
+      </div>
+
+    </div>
+
+    <!-- KANAN (FORM) -->
+    <div class="w-full md:w-1/2 flex flex-col items-center justify-center px-6">
+
+      <!-- CONTAINER FORM -->
+      <div class="w-full max-w-[500px] flex flex-col gap-6">
+
+        <!-- HEADER -->
+        <div class="text-center">
+          <h1 class="text-2xl font-bold">Register</h1>
+          <p>Masuk ke akun anda untuk melanjutkan</p>
+        </div>
+
+        <!-- INPUT -->
+        <div class="flex flex-col gap-4">
+
+          <div>
+           <label>Nama</label>
+           <input id="nama" type="text" placeholder="Nama"
+             class="w-full h-14 p-4 border rounded-[10px]"/>
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input id="email" type="email" placeholder="Email"
+              class="w-full h-14 p-4 border rounded-[10px]"/>
+          </div>
+
+          <div>
+            <label>Password</label>
+            <input id="password" type="password" placeholder="Password"
+              class="w-full h-14 p-4 border rounded-[10px]"/>
+          </div>
+
+          <div>
+  <label>Pilih Peran</label>
+  <div class="relative">
+    <select id="role" class="w-full h-14 p-4 pr-12 border rounded-[10px]">
+      <option>Pilih peran anda</option>
+      <option>Penjual</option>
+      <option>Pembeli</option>
+    </select>
+      </svg>
+    </div>
+  </div>
+</div>
+
+        <!-- BUTTON -->
+        <button onclick="register()" class="w-full h-14 bg-green-600 text-white rounded-[30px]">
+        Daftar
+        </button>
+
+        <!-- DIVIDER -->
+        <div class="flex items-center gap-2">
+          <div class="flex-1 h-[1px] bg-black"></div>
+          <span>Atau</span>
+          <div class="flex-1 h-[1px] bg-black"></div>
+        </div>
+
+        <!-- GOOGLE -->
+        <div class="flex items-center justify-center gap-3 border rounded-[30px] h-14">
+          <img src="google.png" class="w-5 h-5"/>
+          <span>Continue with Google</span>
+        </div>
+
+        <!-- FOOTER -->
+        <p class="text-center">
+          Sudah punya Akun?
+          <span class="text-green-700 cursor-pointer">Masuk!</span>
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <script src="register.js"></script>
+</body>
+</html>
