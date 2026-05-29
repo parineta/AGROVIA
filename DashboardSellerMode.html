@@ -757,6 +757,14 @@ function hapusProduk(index) {
 }
 updateStockUI();
 lucide.createIcons();
+function logout(){
+
+  localStorage.removeItem("isLogin");
+  localStorage.removeItem("username");
+  localStorage.removeItem("role");
+
+  window.location.href = "DashboardCustomerMode.html";
+}
   </script>
 
 </body>
