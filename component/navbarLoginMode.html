@@ -1,3 +1,4 @@
+
 <nav class="w-full bg-[#E3C800] border-b border-[#d4bc00] sticky top-0 z-50">
 
   <div class="max-w-[1440px] mx-auto px-8 py-5 flex items-center justify-between gap-8">
@@ -66,11 +67,12 @@
           src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
           class="w-[44px] h-[44px] rounded-full object-cover"
         />
-      <div class="text-left">
-          <p class="font-bold text-secondary">Josh Witson</p>
-          <p class="text-xs text-muted">Penjual</p>
-        </div>
+      
 
+      <!-- LOGOUT -->
+      <button class="login-btn" onclick="logout()">
+        Logout
+      </button>
       
 
     </div>
@@ -133,4 +135,13 @@
 
     searchInput.addEventListener("input", doSearch);
     }
+
+ function logout(){
+
+  localStorage.removeItem("isLogin");
+  localStorage.removeItem("username");
+  localStorage.removeItem("role");
+
+  window.location.href = "login.html";
+  }
 </script>
