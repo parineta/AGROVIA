@@ -646,13 +646,13 @@
 
   <!-- BOTTOM BAR -->
   <div class="bottom-bar">
-    <button class="btn-back" onclick="location.href='cart.html'"><i data-lucide="arrow-left"></i> Kembali ke Keranjang</button>
+    <button class="btn-back" onclick="location.href='Cart.html'"><i data-lucide="arrow-left"></i> Kembali ke Keranjang</button>
     <div class="bottom-right">
       <div class="bottom-total">
         <div class="bottom-total-label">Total Pembayaran</div>
         <div class="bottom-total-price" id="bottomTotal">Rp 0</div>
       </div>
-      <button class="btn-bayar" onclick="window.location.href='login.html'">Bayar</button>
+      <button class="btn-bayar" onclick="checkout()">Bayar</button>
     </div>
   </div>
 
@@ -761,6 +761,15 @@
         { ...products[2], qty: 1},
         { ...products[1], qty: 1}
       ];
+    }
+
+    function checkout() {
+
+      localStorage.setItem("agrovia_orders", JSON.stringify(cart));
+
+      localStorage.removeItem("agrovia_cart");
+
+      window.location.href = "DaftarPesanan.html";
     }
 
     function renderOrder() {
