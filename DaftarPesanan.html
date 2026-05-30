@@ -7,11 +7,11 @@
     <title>Daftar Pesanan</title>
 
     <!-- FONT -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- TAILWIND -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -20,11 +20,11 @@
 
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+            }
 
         body {
             background: #F6F3EE;
@@ -493,6 +493,11 @@
           src="https://i.pinimg.com/originals/4e/22/be/4e22beef6d94640c45a1b15f4a158b23.png"
           class="w-[44px] h-[44px] rounded-full object-cover"
         />
+      <div class="text-left">
+          <p class="font-bold text-secondary">Kenny Shefa Dinarti</p>
+          <p class="text-xs text-muted">Pembeli</p>
+        </div>
+
       
 
     </div>
@@ -882,7 +887,6 @@
 
     });
 
-    const orders = JSON.parse(localStorage.getItem("agrovia_orders")) || [];
 </script>
 
 </body>
